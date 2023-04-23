@@ -6,7 +6,7 @@ run docker-compose up -d
 login via http://localhost:8080/auth/admin/master/console/ with credentials admin admin and create user test in the realm espri
 # retrieve token for user test
 curl -L -X POST \
-  'http://localhost:8080/auth/realms/ESPRIT/protocol/openid-connect/token' \
+  'http://localhost:8080/auth/realms/esprit/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   --data-urlencode 'client_id=public-client' \
   --data-urlencode 'grant_type=password' \
