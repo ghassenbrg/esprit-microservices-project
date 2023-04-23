@@ -1,0 +1,54 @@
+version: "3.8"
+services:
+  eureka-server:
+    image: eureka-server:0.0.1-SNAPSHOT
+    container_name: eureka-server
+    hostname: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - esprit-project-network
+
+  keycloak:
+    image: keycloak:21.1.0
+    container_name: keycloak
+    ports:
+      - "8080:8080"
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HTTP_RELATIVE_PATH=/auth
+    networks:
+      - esprit-project-network
+
+  gateway:
+    image: gateway:0.0.1-SNAPSHOT
+    container_name: gateway
+    environment:
+      EUREKA_SERVER_URL: http://eureka-server:8761
+      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8080/auth
+    ports:
+      - "9191:9191"
+    depends_on:
+      - eureka-server
+      - keycloak
+    networks:
+      - esprit-project-network
+
+  dummy-service:
+    image: dummy-service:0.0.1-SNAPSHOT
+    container_name: dummy-service
+    environment:
+      EUREKA_SERVER_URL: http://eureka-server:8761
+      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8080/auth
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+      - keycloak
+    networks:
+      - esprit-project-network
+
+networks:
+  esprit-project-network:
+    driver: bridge

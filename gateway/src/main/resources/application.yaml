@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${KEYCLOAK_AUTH_SERVER_URL:http://localhost:8080/auth}/realms/esprit/protocol/openid-connect/certs
+  cloud:
+    gateway:
+      routes:
+      - id: dummy
+        uri: lb://DUMMY-SERVICE
+        predicates:
+        - Path=/dummy/**    
+server:
+  port: 9191
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761}/eureka
+  instance:
+      preferIpAddress: true
+
+debug: true

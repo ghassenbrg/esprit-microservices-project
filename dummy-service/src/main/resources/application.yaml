@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: dummy-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${KEYCLOAK_AUTH_SERVER_URL:http://localhost:8080/auth}/realms/esprit/protocol/openid-connect/certs
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761}/eureka
+  instance:
+      preferIpAddress: true
+      
+server:
+  port: 8081
+
+debug: true   
