@@ -8,7 +8,7 @@ login via http://localhost:8080/auth/admin/master/console/ with credentials admi
 curl -L -X POST \
   'http://localhost:8080/auth/realms/ESPRIT/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'client_id=PUBLIC-client' \
+  --data-urlencode 'client_id=public-client' \
   --data-urlencode 'grant_type=password' \
   --data-urlencode 'scope=email openid profile' \
   --data-urlencode 'username=test' \
