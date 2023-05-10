@@ -13,7 +13,6 @@ spring:
         uri: lb://DUMMY-SERVICE
         predicates:
         - Path=/dummy/**
-      routes:
       - id: user-management
         uri: lb://USER-MANAGEMENT-SERVICE
         predicates:
