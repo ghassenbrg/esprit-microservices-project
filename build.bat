@@ -1,6 +1,6 @@
 @echo off
 mvn clean install -DskipTests & ^
-docker build -t keycloak:21.1.0 -f ./keycloak/Dockerfile ./keycloak & ^
-docker build -t dummy-service:0.0.1-SNAPSHOT -f ./dummy-service/Dockerfile ./dummy-service & ^
-docker build -t eureka-server:0.0.1-SNAPSHOT -f ./eureka-server/Dockerfile ./eureka-server & ^
-docker build -t gateway:0.0.1-SNAPSHOT -f ./gateway/Dockerfile ./gateway
+docker build -t user-management-service:1.0.0-SNAPSHOT -f ./user-management-service/Dockerfile ./user-management-service & ^
+docker build -t dummy-service:1.0.0-SNAPSHOT -f ./dummy-service/Dockerfile ./dummy-service & ^
+docker build -t eureka-server:1.0.0-SNAPSHOT -f ./eureka-server/Dockerfile ./eureka-server & ^
+docker build -t gateway:1.0.0-SNAPSHOT -f ./gateway/Dockerfile ./gateway

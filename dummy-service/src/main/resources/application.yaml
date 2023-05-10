@@ -5,7 +5,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: ${KEYCLOAK_AUTH_SERVER_URL:http://localhost:8080/auth}/realms/esprit/protocol/openid-connect/certs
+          jwk-set-uri: ${USER_MANAGEMENT_URL:http://localhost:8089}/oauth2/jwks
 eureka:
   client:
     serviceUrl:

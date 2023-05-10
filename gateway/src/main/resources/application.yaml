@@ -5,14 +5,19 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: ${KEYCLOAK_AUTH_SERVER_URL:http://localhost:8080/auth}/realms/esprit/protocol/openid-connect/certs
+          jwk-set-uri: ${USER_MANAGEMENT_URL:http://localhost:8089}/oauth2/jwks
   cloud:
     gateway:
       routes:
       - id: dummy
         uri: lb://DUMMY-SERVICE
         predicates:
-        - Path=/dummy/**    
+        - Path=/dummy/**
+      routes:
+      - id: user-management
+        uri: lb://USER-MANAGEMENT-SERVICE
+        predicates:
+        - Path=/**      
 server:
   port: 9191
 eureka:
