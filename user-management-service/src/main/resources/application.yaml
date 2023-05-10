@@ -30,5 +30,5 @@ eureka:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761}/eureka
   instance:
-      preferIpAddress: true
+      hostname: localhost
 debug: true
