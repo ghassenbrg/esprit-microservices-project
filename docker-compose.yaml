@@ -9,6 +9,15 @@ services:
     networks:
       - esprit-project-network
 
+  config-server:
+    image: config-server:1.0.0-SNAPSHOT
+    container_name: config-server
+    hostname: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - esprit-project-network
+
   user-management-service:
     image: user-management-service:1.0.0-SNAPSHOT
     container_name: user-management-service
