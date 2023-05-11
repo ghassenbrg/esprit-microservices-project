@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  product-catalog-service:
+    image: product-catalog-service:1.0.0-SNAPSHOT
+    container_name: product-catalog-service
+    hostname: product-catalog-service
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/product-catalog-service
+      EUREKA_SERVER_URL: http://eureka-server:8761
+      USER_MANAGEMENT_SERVICE_URL: http://user-management-service:8089
+      INVENTORY_SERVICE_URL: http://inventory-service:9786
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
