@@ -22,6 +22,8 @@ services:
     image: user-management-service:1.0.0-SNAPSHOT
     container_name: user-management-service
     hostname: user-management-service
+    environment:
+      EUREKA_SERVER_URL: http://eureka-server:8761
     ports:
       - "8089:8089"
     networks:
