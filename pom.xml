@@ -11,6 +11,8 @@
 
     <modules>
         <module>dummy-service</module>
+        <module>order-processing-service</module>
+        <module>user-management-service</module>
         <module>eureka-server</module>
         <module>gateway</module>
     </modules>
