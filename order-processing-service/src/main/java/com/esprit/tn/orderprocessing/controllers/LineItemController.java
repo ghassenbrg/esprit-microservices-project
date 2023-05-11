@@ -3,6 +3,7 @@ package com.esprit.tn.orderprocessing.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.esprit.tn.orderprocessing.models.LineItem;
-import com.esprit.tn.orderprocessing.models.Order;
+import com.esprit.tn.orderprocessing.payload.ApiResponse;
+import com.esprit.tn.orderprocessing.payload.LineItemDto;
 import com.esprit.tn.orderprocessing.services.LineItemService;
 
 /**
@@ -30,22 +32,37 @@ public class LineItemController {
 	@Autowired
 	private LineItemService lineItemService;
 
+	private ModelMapper modelMapper = new ModelMapper();
+
 	@GetMapping("/{orderId}")
-	public ResponseEntity<List<LineItem>> findItemsByOrderId(Long orderId) {
-		List<LineItem> items = lineItemService.getItemsByOrderId(orderId).stream()
-				.collect(Collectors.toList());
+	public ResponseEntity<List<LineItemDto>> findItemsByOrderId(Long orderId) {
+		List<LineItemDto> items = lineItemService.getItemsByOrderId(orderId).stream()
+				.map(this::convertLineItemEntityToLineItemDto).collect(Collectors.toList());
 		return new ResponseEntity<>(items, HttpStatus.OK);
 	}
 
 	@PostMapping("/{orderId}")
-	public ResponseEntity<LineItem> addItem(Long orderId, @RequestBody LineItem lineItem) {
-		lineItemService.addItemToOrder(orderId, lineItem);
-		return new ResponseEntity<>(lineItem, HttpStatus.CREATED);
+	public ResponseEntity<ApiResponse> addItem(Long orderId, @RequestBody LineItemDto lineItem) {
+		lineItemService.addItemToOrder(orderId, convertLineItemDtoToLineItemEntity(lineItem));
+		ApiResponse apiResponse = new ApiResponse(Boolean.TRUE, "Item added successfully!");
+		return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{orderId}/cancel/{lineItemId}")
-	public ResponseEntity<Order>removeItem(@PathVariable("orderId") Long orderId, @PathVariable("lineItemId") Long lineItemId) {
+	public ResponseEntity<ApiResponse> removeItem(@PathVariable("orderId") Long orderId,
+			@PathVariable("lineItemId") Long lineItemId) {
 		lineItemService.removeItemFromOrder(orderId, lineItemId);
-		return new ResponseEntity<>(HttpStatus.OK);
+		ApiResponse apiResponse = new ApiResponse(Boolean.TRUE, "Item removed successfully!");
+		return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+	}
+
+	private LineItemDto convertLineItemEntityToLineItemDto(LineItem lineItem) {
+		LineItemDto lineItemDto = modelMapper.map(lineItem, LineItemDto.class);
+		return lineItemDto;
+	}
+
+	private LineItem convertLineItemDtoToLineItemEntity(LineItemDto lineItemDto) {
+		LineItem lineItem = modelMapper.map(lineItemDto, LineItem.class);
+		return lineItem;
 	}
 }

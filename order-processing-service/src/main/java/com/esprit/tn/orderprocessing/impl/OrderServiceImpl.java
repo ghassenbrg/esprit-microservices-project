@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.esprit.tn.orderprocessing.exceptions.BadRequestException;
 import com.esprit.tn.orderprocessing.models.Order;
 import com.esprit.tn.orderprocessing.payload.ApiResponse;
+import com.esprit.tn.orderprocessing.payload.OrderDto;
 import com.esprit.tn.orderprocessing.repositories.OrderRepository;
 import com.esprit.tn.orderprocessing.services.OrderService;
 
@@ -59,10 +60,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public void updateOrder(Long customerId, Long orderId, Order orderInput) {
+	public void updateOrder(Long customerId, Long orderId, OrderDto orderInput) {
 		Order order = findOrderById(orderId);
 		order.setCustomerId(orderInput.getCustomerId());
-		order.setItems(orderInput.getItems());
 		order.setOrderDate(orderInput.getOrderDate());
 		order.setPaymentId(orderInput.getPaymentId());
 		order.setStatus(orderInput.getStatus());
