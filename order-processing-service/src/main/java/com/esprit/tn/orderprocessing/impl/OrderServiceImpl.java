@@ -3,6 +3,8 @@ package com.esprit.tn.orderprocessing.impl;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.esprit.tn.orderprocessing.exceptions.BadRequestException;
 import com.esprit.tn.orderprocessing.models.Order;
 import com.esprit.tn.orderprocessing.payload.ApiResponse;
@@ -15,6 +17,7 @@ import com.esprit.tn.orderprocessing.services.OrderService;
  *
  */
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
