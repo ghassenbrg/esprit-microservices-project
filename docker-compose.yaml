@@ -32,6 +32,23 @@ services:
     networks:
       - esprit-project-network
 
+  product-catalog-service:
+    image: product-catalog-service:1.0.0-SNAPSHOT
+    container_name: product-catalog-service
+    hostname: product-catalog-service
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/product-catalog-service
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
   dummy-service:
     image: dummy-service:1.0.0-SNAPSHOT
     container_name: dummy-service
@@ -49,3 +66,6 @@ services:
 networks:
   esprit-project-network:
     driver: bridge
+
+volumes:
+  mongo-data:
