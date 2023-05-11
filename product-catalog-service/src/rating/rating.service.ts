@@ -1,17 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { CreateRatingDto, UpdateRatingDto } from 'src/model/dtos/rating.dto';
+import { ProductDocument } from '../model/schemas/product.schema';
 import { Rating, RatingDocument } from '../model/schemas/rating.schema';
-import { Product, ProductDocument } from '../model/schemas/product.schema';
 
 @Injectable()
 export class RatingService {
   constructor(
-    @InjectModel('Rating') private ratingModel: Model<RatingDocument>, 
+    @InjectModel('Rating') private ratingModel: Model<RatingDocument>,
     @InjectModel('Product') private productModel: Model<ProductDocument>
-  ) {}
+  ) { }
 
-  async addRatingToProduct(productId: string, createRatingDto: any): Promise<Rating> {
+  async addRatingToProduct(productId: string, createRatingDto: CreateRatingDto): Promise<Rating> {
     const product = await this.productModel.findOne({ productId });
     if (!product) {
       throw new NotFoundException('Product not found');
@@ -33,7 +34,7 @@ export class RatingService {
     return product.ratings;
   }
 
-  async updateRating(id: string, updateRatingDto: any): Promise<Rating> {
+  async updateRating(id: string, updateRatingDto: UpdateRatingDto): Promise<Rating> {
     return this.ratingModel.findByIdAndUpdate(id, updateRatingDto, { new: true }).exec();
   }
 
