@@ -77,16 +77,17 @@ services:
     networks:
       - esprit-project-network
 
-  order-processing-service:
-    image: order-processing-service:1.0.0-SNAPSHOT
-    container_name: order-processing-service
-    hostname: order-processing-service
+  payment-service:
+    image: payment-service:1.0.0-SNAPSHOT
+    container_name: payment-service
     environment:
       EUREKA_SERVER_URL: http://eureka-server:8761
-      USER_MANAGEMENT_SERVICE_URL: http://user-management-service:8089
-      PRODUCT_CATALOG_SERVICE_URL: http://product-catalog-service:3000
+      USER_MANAGEMENT_URL: http://user-management-service:8089
     ports:
-      - "8989:8989"
+      - "8084:8084"
+    depends_on:
+      - eureka-server
+      - user-management-service
     networks:
       - esprit-project-network
 
