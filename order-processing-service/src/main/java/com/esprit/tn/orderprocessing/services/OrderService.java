@@ -10,7 +10,7 @@ import com.esprit.tn.orderprocessing.models.Order;
  *
  */
 
-public interface OrderProcessingService {
+public interface OrderService {
 
 	List<Order> getAllOrders();
 

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esprit.tn.orderprocessing.models.Order;
-import com.esprit.tn.orderprocessing.services.OrderProcessingService;
+import com.esprit.tn.orderprocessing.services.OrderService;
 
 /**
  * 
@@ -26,46 +26,46 @@ import com.esprit.tn.orderprocessing.services.OrderProcessingService;
 
 @RestController
 @RequestMapping("/orders")
-public class OrderProcessingController {
+public class OrderController {
 
 	@Autowired
-	private OrderProcessingService orderProcessingService;
+	private OrderService orderService;
 
 	@GetMapping()
 	public ResponseEntity<List<Order>> findAll() {
-		List<Order> orders = orderProcessingService.getAllOrders().stream().collect(Collectors.toList());
+		List<Order> orders = orderService.getAllOrders().stream().collect(Collectors.toList());
 		return new ResponseEntity<>(orders, HttpStatus.OK);
 	}
 
 	@GetMapping("/my-orders")
 	public ResponseEntity<List<Order>> findAllOrdersByCustomerId(Long customerId) {
-		List<Order> orders = orderProcessingService.getOrdersByCustomerId(customerId).stream()
+		List<Order> orders = orderService.getOrdersByCustomerId(customerId).stream()
 				.collect(Collectors.toList());
 		return new ResponseEntity<>(orders, HttpStatus.OK);
 	}
 
 	@GetMapping("/{orderId}")
 	public ResponseEntity<Order> getOrderDetails(@PathVariable("orderId") Long orderId) {
-		Order order = orderProcessingService.findOrderById(orderId);
+		Order order = orderService.findOrderById(orderId);
 		return new ResponseEntity<>(order, HttpStatus.OK);
 	}
 
 	@PostMapping()
-	public ResponseEntity<Order> creatOrder(Long customerId, @RequestBody Order order) {
-		orderProcessingService.createOrder(customerId, order);
+	public ResponseEntity<Order> submitOrder(Long customerId, @RequestBody Order order) {
+		orderService.createOrder(customerId, order);
 		return new ResponseEntity<>(order, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{orderId}")
 	public ResponseEntity<Order> updateOrder(Long customerId, @PathVariable("orderId") Long orderId,
 			@RequestBody Order order) {
-		orderProcessingService.updateOrder(customerId, orderId, order);
+		orderService.updateOrder(customerId, orderId, order);
 		return new ResponseEntity<>(order, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{orderId}/cancel")
 	public ResponseEntity<Order> cancelOrder(Long customerId, @PathVariable("orderId") Long orderId) {
-		orderProcessingService.cancelOrder(customerId, orderId);
+		orderService.cancelOrder(customerId, orderId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

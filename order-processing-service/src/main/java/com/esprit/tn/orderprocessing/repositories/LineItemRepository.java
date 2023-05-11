@@ -1,7 +1,8 @@
 package com.esprit.tn.orderprocessing.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.esprit.tn.orderprocessing.models.Order;
+
+import com.esprit.tn.orderprocessing.models.LineItem;
 
 /**
  * 
@@ -9,6 +10,6 @@ import com.esprit.tn.orderprocessing.models.Order;
  *
  */
 
-public interface OrderProcessingRepository extends JpaRepository<Order, Long> {
+public interface LineItemRepository extends JpaRepository<LineItem, Long> {
 
 }

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.esprit.tn.orderprocessing.exceptions.BadRequestException;
 import com.esprit.tn.orderprocessing.models.Order;
 import com.esprit.tn.orderprocessing.payload.ApiResponse;
-import com.esprit.tn.orderprocessing.repositories.OrderProcessingRepository;
-import com.esprit.tn.orderprocessing.services.OrderProcessingService;
+import com.esprit.tn.orderprocessing.repositories.OrderRepository;
+import com.esprit.tn.orderprocessing.services.OrderService;
 
 /**
  * 
@@ -15,14 +15,14 @@ import com.esprit.tn.orderprocessing.services.OrderProcessingService;
  *
  */
 
-public class OrderProcessingServiceImpl implements OrderProcessingService {
+public class OrderServiceImpl implements OrderService {
 
 	@Autowired
-	private OrderProcessingRepository orderProcessingRepository;
+	private OrderRepository orderRepository;
 
 	@Override
 	public List<Order> getAllOrders() {
-		return orderProcessingRepository.findAll();
+		return orderRepository.findAll();
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class OrderProcessingServiceImpl implements OrderProcessingService {
 
 	@Override
 	public Order findOrderById(Long orderId) {
-		Order order = orderProcessingRepository.findById(orderId).orElse(null);
+		Order order = orderRepository.findById(orderId).orElse(null);
 		if (order == null) {
 			ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "Order does not exist");
 			throw new BadRequestException(apiResponse);
@@ -52,7 +52,7 @@ public class OrderProcessingServiceImpl implements OrderProcessingService {
 		if (order != null) {
 			order.setCustomerId(customerId);
 		}
-		orderProcessingRepository.save(order);
+		orderRepository.save(order);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class OrderProcessingServiceImpl implements OrderProcessingService {
 		order.setOrderDate(orderInput.getOrderDate());
 		order.setPaymentId(orderInput.getPaymentId());
 		order.setStatus(orderInput.getStatus());
-		orderProcessingRepository.save(order);
+		orderRepository.save(order);
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class OrderProcessingServiceImpl implements OrderProcessingService {
 			ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "You don't have permission to cancel this order");
 			throw new BadRequestException(apiResponse);
 		}
-		orderProcessingRepository.delete(order);
+		orderRepository.delete(order);
 	}
 
 }
