@@ -18,7 +18,7 @@ public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long orderId;
 
 	@Column(name = "customer_id")
 	private Long customerId;
@@ -35,12 +35,12 @@ public class Order {
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LineItem> items = new ArrayList<>();
 
-	public Long getId() {
-		return id;
+	public Long getOrderId() {
+		return orderId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
 	public Long getCustomerId() {

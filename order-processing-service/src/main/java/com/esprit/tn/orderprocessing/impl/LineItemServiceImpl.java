@@ -35,7 +35,7 @@ public class LineItemServiceImpl implements LineItemService {
 		List<LineItem> items = new ArrayList<>();
 		List<LineItem> allItems = getAllItems();
 		allItems.forEach(item -> {
-			if (item.getOrder() != null && item.getOrder().getId() != null && item.getOrder().getId().equals(orderId)) {
+			if (item.getOrder() != null && item.getOrder().getOrderId() != null && item.getOrder().getOrderId().equals(orderId)) {
 				items.add(item);
 			}
 		});

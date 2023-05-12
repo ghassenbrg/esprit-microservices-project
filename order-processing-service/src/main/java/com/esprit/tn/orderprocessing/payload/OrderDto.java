@@ -5,19 +5,19 @@ import java.util.List;
 
 public class OrderDto {
 
-	private Long id;
+	private Long orderId;
 	private Long customerId;
 	private String status = "NEW";
 	private String orderDate;
 	private String paymentId;
 	private List<LineItemDto> items = new ArrayList<>();
 
-	public Long getId() {
-		return id;
+	public Long getOrderId() {
+		return orderId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
 	public Long getCustomerId() {

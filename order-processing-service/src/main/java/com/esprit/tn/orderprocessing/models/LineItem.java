@@ -19,7 +19,7 @@ public class LineItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long lineItemId;
 
 	@Column(name = "product_id")
 	private String productId;
@@ -34,12 +34,12 @@ public class LineItem {
 	@JoinColumn(name = "order_id")
 	private Order order;
 
-	public Long getId() {
-		return id;
+	public Long getLineItemId() {
+		return lineItemId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setLineItemId(Long lineItemId) {
+		this.lineItemId = lineItemId;
 	}
 
 	public String getProductId() {
