@@ -5,7 +5,8 @@
         "role": "seller",
         "email": "john.doe@abcd.com",
         "password": "seller",
-        "username": "seller1"
+        "username": "seller1",
+        "address": "123 Main St, Anytown USA"
     },
     {
         "firstName": "Jane",
@@ -13,7 +14,8 @@
         "role": "seller",
         "email": "jane.smith@abcd.com",
         "password": "seller",
-        "username": "seller2"
+        "username": "seller2",
+        "address": "456 Elm St, Anytown USA"
     },
     {
         "firstName": "Bob",
@@ -21,7 +23,8 @@
         "role": "seller",
         "email": "bob.williams@abcd.com",
         "password": "seller",
-        "username": "seller3"
+        "username": "seller3",
+        "address": "789 Oak St, Anytown USA"
     },
     {
         "firstName": "Alice",
@@ -29,7 +32,8 @@
         "role": "seller",
         "email": "alice.johnson@abcd.com",
         "password": "seller",
-        "username": "seller4"
+        "username": "seller4",
+        "address": "1011 Maple St, Anytown USA"
     },
     {
         "firstName": "Tom",
@@ -37,7 +41,8 @@
         "role": "seller",
         "email": "tom.brown@abcd.com",
         "password": "seller",
-        "username": "seller5"
+        "username": "seller5",
+        "address": "1213 Pine St, Anytown USA"
     },
     {
         "firstName": "Emma",
@@ -45,7 +50,8 @@
         "role": "seller",
         "email": "emma.taylor@abcd.com",
         "password": "seller",
-        "username": "seller6"
+        "username": "seller6",
+        "address": "1415 Cedar St, Anytown USA"
     },
     {
         "firstName": "Charlie",
@@ -53,7 +59,8 @@
         "role": "seller",
         "email": "charlie.davis@abcd.com",
         "password": "seller",
-        "username": "seller7"
+        "username": "seller7",
+        "address": "1617 Birch St, Anytown USA"
     },
     {
         "firstName": "Sophie",
@@ -61,7 +68,8 @@
         "role": "seller",
         "email": "sophie.miller@abcd.com",
         "password": "seller",
-        "username": "seller8"
+        "username": "seller8",
+        "address": "1819 Spruce St, Anytown USA"
     },
     {
         "firstName": "George",
@@ -69,7 +77,8 @@
         "role": "seller",
         "email": "george.clark@abcd.com",
         "password": "seller",
-        "username": "seller9"
+        "username": "seller9",
+        "address": "2021 Cedar St, Anytown USA"
     },
     {
         "firstName": "Olivia",
@@ -77,7 +86,8 @@
         "role": "seller",
         "email": "olivia.jones@abcd.com",
         "password": "seller",
-        "username": "seller10"
+        "username": "seller10",
+        "address": "2223 Oak St, Anytown USA"
     },
     {
         "firstName": "William",
@@ -85,7 +95,8 @@
         "role": "buyer",
         "email": "william.anderson@abcd.com",
         "password": "buyer",
-        "username": "buyer1"
+        "username": "buyer1",
+        "address": "2425 Elm St, Anytown USA"
     },
     {
         "firstName": "Mia",
@@ -93,7 +104,8 @@
         "role": "buyer",
         "email": "mia.thomas@abcd.com",
         "password": "buyer",
-        "username": "buyer2"
+        "username": "buyer2",
+        "address": "2425 Elm St, Anytown USA"
     },
     {
         "firstName": "James",
@@ -101,7 +113,8 @@
         "role": "buyer",
         "email": "james.jackson@abcd.com",
         "password": "buyer",
-        "username": "buyer3"
+        "username": "buyer3",
+        "address": "2425 Elm St, Anytown USA"
     },
     {
         "firstName": "Ava",
@@ -109,7 +122,8 @@
         "role": "buyer",
         "email": "ava.white@abcd.com",
         "password": "buyer",
-        "username": "buyer4"
+        "username": "buyer4",
+        "address": "2425 Elm St, Anytown USA"
     },
     {
         "firstName": "Henry",
@@ -117,7 +131,8 @@
         "role": "buyer",
         "email": "henry.harris@abcd.com",
         "password": "buyer",
-        "username": "buyer5"
+        "username": "buyer5",
+        "address": "2425 Elm St, Anytown USA"
     },
     {
         "firstName": "Ella",
@@ -125,6 +140,7 @@
         "role": "admin",
         "email": "ella.martin@abcd.com",
         "password": "admin",
-        "username": "admin"
+        "username": "admin",
+        "address": "2425 Elm St, Anytown USA"
     }
 ]

@@ -1,0 +1,122 @@
+[
+    {
+        "customerId": 1,
+        "status": "NEW",
+        "orderDate": "2023-05-01",
+        "paymentId": "P01"
+    },
+    {
+        "customerId": 1,
+        "status": "DELIVRED",
+        "orderDate": "2022-05-01",
+        "paymentId": "P02"
+    },
+    {
+        "customerId": 2,
+        "status": "DELIVRED",
+        "orderDate": "2022-05-03",
+        "paymentId": "P03"
+    },
+    {
+        "customerId": 2,
+        "status": "DELIVRED",
+        "orderDate": "2022-06-01",
+        "paymentId": "P04"
+    },
+    {
+        "customerId": 3,
+        "status": "CANCELLED",
+        "orderDate": "2022-05-01",
+        "paymentId": "P05"
+    },
+    {
+        "customerId": 3,
+        "status": "CANCELLED",
+        "orderDate": "2021-08-01",
+        "paymentId": "P06"
+    },
+    {
+        "customerId": 4,
+        "status": "NEW",
+        "orderDate": "2022-12-12",
+        "paymentId": "P07"
+    },
+    {
+        "customerId": 4,
+        "status": "CANCELLED",
+        "orderDate": "2022-05-02",
+        "paymentId": "P08"
+    },
+    {
+        "customerId": 4,
+        "status": "DELIVERED",
+        "orderDate": "2020-04-01",
+        "paymentId": "P09"
+    },
+    {
+        "customerId": 5,
+        "status": "NEW",
+        "orderDate": "2022-03-01",
+        "paymentId": "P10"
+    },
+    {
+        "customerId": 5,
+        "status": "DELIVERED",
+        "orderDate": "2022-05-11",
+        "paymentId": "P11"
+    },
+    {
+        "customerId": 1,
+        "status": "DELIVERED",
+        "orderDate": "2022-07-01",
+        "paymentId": "P12"
+    },
+    {
+        "customerId": 2,
+        "status": "NEW",
+        "orderDate": "2022-09-01",
+        "paymentId": "P13"
+    },
+    {
+        "customerId": 3,
+        "status": "DELIVERED",
+        "orderDate": "2022-11-01",
+        "paymentId": "P14"
+    },
+    {
+        "customerId": 3,
+        "status": "NEW",
+        "orderDate": "2022-03-01",
+        "paymentId": "P15"
+    },
+    {
+        "customerId": 4,
+        "status": "NEW",
+        "orderDate": "2022-05-01",
+        "paymentId": "P16"
+    },
+    {
+        "customerId": 2,
+        "status": "NEW",
+        "orderDate": "2022-11-01",
+        "paymentId": "P17"
+    },
+    {
+        "customerId": 2,
+        "status": "NEW",
+        "orderDate": "2022-12-05",
+        "paymentId": "P18"
+    },
+    {
+        "customerId": 2,
+        "status": "NEW",
+        "orderDate": "2022-12-05",
+        "paymentId": "P18"
+    },
+    {
+        "customerId": 2,
+        "status": "NEW",
+        "orderDate": "2022-12-05",
+        "paymentId": "P18"
+    }
+]
