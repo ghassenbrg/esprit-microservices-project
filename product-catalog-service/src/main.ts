@@ -13,14 +13,16 @@ async function bootstrap() {
     .setTitle('Product Catalog Service API')
     .setDescription('API for managing product catalog data')
     .setVersion('1.0')
+    .addServer('/product-catalog/api')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('product-catalog/api-docs', app, document);
+  SwaggerModule.setup('/product-catalog/api/docs', app, document);
+
 
   app.setViewEngine('hbs');
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
-  hbs.registerPartials(join(__dirname, '..', 'views/partials'));
+  app.setBaseViewsDir(join(__dirname, 'views'));
+  hbs.registerPartials(join(__dirname, 'views/partials'));
   app.setGlobalPrefix('product-catalog/api');
   await app.listen(3000);
 }

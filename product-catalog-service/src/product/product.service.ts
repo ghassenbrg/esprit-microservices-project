@@ -3,8 +3,9 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { firstValueFrom } from 'rxjs';
-import { Product } from '../model/schemas/product.schema';
+import { CreateProductDto, UpdateProductDto } from 'src/model/dtos/product.dto';
 import { RatingService } from 'src/rating/rating.service';
+import { Product } from '../model/schemas/product.schema';
 
 @Injectable()
 export class ProductService {
@@ -14,7 +15,7 @@ export class ProductService {
     private ratingService: RatingService,
   ) { }
 
-  async create(createProductDto: any): Promise<Product> {
+  async create(createProductDto: CreateProductDto): Promise<Product> {
     const { sellerId } = createProductDto;
     if (sellerId) {
       const isValidSeller = await this.validateUserId(sellerId);
@@ -22,10 +23,9 @@ export class ProductService {
         throw new BadRequestException('Invalid sellerId');
       }
     }
-    const { ratings, ...dtoWithoutRatings } = createProductDto;
-    dtoWithoutRatings.creationDate = new Date();
-    dtoWithoutRatings.lastUpdateDate = dtoWithoutRatings.creationDate;
-    const createdProduct = new this.productModel(dtoWithoutRatings);
+    const createdProduct = new this.productModel(createProductDto);
+    createdProduct.creationDate = new Date();
+    createdProduct.lastUpdateDate = createdProduct.creationDate;
     return createdProduct.save();
   }
 
@@ -39,7 +39,7 @@ export class ProductService {
     return this.fillTransientFields(product);
   }
 
-  async update(productId: string, updateProductDto: any): Promise<Product> {
+  async update(productId: string, updateProductDto: UpdateProductDto): Promise<Product> {
     const { sellerId } = updateProductDto;
     if (sellerId) {
       const isValidSeller = await this.validateUserId(sellerId);
@@ -47,9 +47,8 @@ export class ProductService {
         throw new BadRequestException('Invalid sellerId');
       }
     }
-    const { ratings, creationDate, ...dtoWithoutRatings } = updateProductDto;
-    dtoWithoutRatings.lastUpdateDate = new Date();
-    const product = await this.productModel.findOneAndUpdate({ productId }, dtoWithoutRatings, { new: true }).exec();
+    const product = await this.productModel.findOneAndUpdate({ productId }, updateProductDto, { new: true }).exec();
+    product.lastUpdateDate = new Date();
     return this.fillTransientFields(product);
   }
 
@@ -74,7 +73,7 @@ export class ProductService {
 
   async getTopRated(): Promise<Product[]> {
     const products = await this.productModel.find().exec();
-        const productsWithRatings = await Promise.all(products.map(async (product) => {
+    const productsWithRatings = await Promise.all(products.map(async (product) => {
       const avgRating = await this.ratingService.getAverageRating(product.productId);
       const productObj = product.toObject();
       return {
@@ -104,17 +103,22 @@ export class ProductService {
 
     product.sellerName = sellerName;
     product.inventoryCount = inventoryCount;
-
+    product.ratings = undefined;
+    
     return product;
   }
 
   async fetchSellerName(sellerId: string) {
+    // TODO delete this line
+    return 'Ghassen Bargougui';
     const response$ = this.httpService.get(`${process.env.USER_MANAGEMENT_SERVICE_URL}/users/${sellerId}`);
     const response = await firstValueFrom(response$);
     return response.data.name;
   }
 
   async fetchInventoryCount(productId: string): Promise<number> {
+    // TODO delete this line
+    return 143;
     try {
       const response$ = this.httpService.get(`${process.env.INVENTORY_SERVICE_URL}/inventory/${productId}`);
       const response = await firstValueFrom(response$);
@@ -129,6 +133,8 @@ export class ProductService {
   }
 
   private async validateUserId(userId: string): Promise<boolean> {
+    // TODO delete this line
+    return true;
     try {
       const response$ = this.httpService.get(`${process.env.USER_MANAGEMENT_SERVICE_URL}/users/${userId}`);
       await firstValueFrom(response$);

@@ -42,27 +42,38 @@ services:
       - user-management-service
     networks:
       - esprit-project-network
-
   product-catalog-service:
     image: product-catalog-service:1.0.0-SNAPSHOT
     container_name: product-catalog-service
     hostname: product-catalog-service
     ports:
-      - "3000:3000"
+      - "3001:3000"
     links:
       - mongo
     environment:
       MONGODB_URI: mongodb://mongo:27017/product-catalog-service
-      EUREKA_SERVER_URL: http://eureka-server:8761
+      EUREKA_HOST: eureka-server
+      EUREKA_PORT: 8761
+      JWKS_URI: http://user-management-service:8089/oauth2/jwks
+      JWT_AUDIENCE: microservices-client
+      JWT_ISSUER: http://user-management-service:8089
       USER_MANAGEMENT_SERVICE_URL: http://user-management-service:8089
       INVENTORY_SERVICE_URL: http://inventory-service:9786
+    depends_on:
+      - eureka-server
+      - user-management-service
+      - mongo
+    networks:
+      - esprit-project-network
   mongo:
     image: mongo
+    container_name: mongo
     ports:
-      - "27017:27017"
+      - "27018:27017"
+    networks:
+      - esprit-project-network
     volumes:
       - mongo-data:/data/db
-
   dummy-service:
     image: dummy-service:1.0.0-SNAPSHOT
     container_name: dummy-service

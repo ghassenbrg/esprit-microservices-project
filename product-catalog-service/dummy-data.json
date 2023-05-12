@@ -1,0 +1,377 @@
+[
+    {
+        "productId": "P123456",
+        "sellerId": "S100001",
+        "name": "Apple iPhone 13",
+        "description": "Latest model of the Apple iPhone series.",
+        "category": [
+            "Electronics",
+            "Mobile Phones"
+        ],
+        "price": 1099,
+        "images": [
+            "iphone13.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123457",
+        "sellerId": "S100002",
+        "name": "Samsung Galaxy S21",
+        "description": "Flagship phone from Samsung with high resolution camera.",
+        "category": [
+            "Electronics",
+            "Mobile Phones"
+        ],
+        "price": 999,
+        "images": [
+            "galaxys21.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123458",
+        "sellerId": "S100003",
+        "name": "Dell XPS 15",
+        "description": "Powerful laptop from Dell with high performance graphics.",
+        "category": [
+            "Electronics",
+            "Laptops"
+        ],
+        "price": 1899,
+        "images": [
+            "dellxps15.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123459",
+        "sellerId": "S100004",
+        "name": "Apple Macbook Pro",
+        "description": "Professional laptop from Apple with M1 chip.",
+        "category": [
+            "Electronics",
+            "Laptops"
+        ],
+        "price": 1999,
+        "images": [
+            "macbookpro.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123460",
+        "sellerId": "S100005",
+        "name": "Sony Playstation 5",
+        "description": "Latest gaming console from Sony.",
+        "category": [
+            "Electronics",
+            "Gaming"
+        ],
+        "price": 499,
+        "images": [
+            "ps5.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123461",
+        "sellerId": "S100006",
+        "name": "Samsung 55\" Smart TV",
+        "description": "55 inch smart TV from Samsung with 4K resolution.",
+        "category": [
+            "Electronics",
+            "TVs"
+        ],
+        "price": 599,
+        "images": [
+            "samsungtv.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123462",
+        "sellerId": "S100007",
+        "name": "Canon EOS 90D DSLR Camera",
+        "description": "High performance DSLR camera from Canon.",
+        "category": [
+            "Electronics",
+            "Cameras"
+        ],
+        "price": 1199,
+        "images": [
+            "canon90d.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123463",
+        "sellerId": "S100008",
+        "name": "Apple iPhone 13",
+        "description": "The latest Apple iPhone with a stunning new design.",
+        "category": [
+            "Electronics",
+            "Smartphones"
+        ],
+        "price": 999,
+        "images": [
+            "iphone13.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123464",
+        "sellerId": "S100009",
+        "name": "Samsung Galaxy S21",
+        "description": "Samsung's flagship smartphone with cutting-edge features.",
+        "category": [
+            "Electronics",
+            "Smartphones"
+        ],
+        "price": 899,
+        "images": [
+            "galaxys21.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123465",
+        "sellerId": "S100010",
+        "name": "Nintendo Switch",
+        "description": "The ultimate home video game console from Nintendo.",
+        "category": [
+            "Electronics",
+            "Gaming"
+        ],
+        "price": 299,
+        "images": [
+            "nintendoswitch.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123466",
+        "sellerId": "S100011",
+        "name": "Apple Watch Series 7",
+        "description": "The latest Apple Watch with new health features.",
+        "category": [
+            "Electronics",
+            "Smartwatches"
+        ],
+        "price": 399,
+        "images": [
+            "applewatch.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123467",
+        "sellerId": "S100012",
+        "name": "Sony WH-1000XM4",
+        "description": "Industry-leading noise cancelling headphones from Sony.",
+        "category": [
+            "Electronics",
+            "Audio"
+        ],
+        "price": 349,
+        "images": [
+            "sonyheadphones.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123468",
+        "sellerId": "S100013",
+        "name": "KitchenAid Stand Mixer",
+        "description": "The ultimate kitchen tool for any baker.",
+        "category": [
+            "Home",
+            "Kitchen"
+        ],
+        "price": 379,
+        "images": [
+            "kitchenaidmixer.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123469",
+        "sellerId": "S100014",
+        "name": "Instant Pot Duo 7-in-1",
+        "description": "Versatile electric pressure cooker that does the job of 7 appliances.",
+        "category": [
+            "Home",
+            "Kitchen"
+        ],
+        "price": 89,
+        "images": [
+            "instantpot.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123470",
+        "sellerId": "S100015",
+        "name": "Dyson V11 Torque Drive",
+        "description": "Powerful, intelligent vacuum cleaner from Dyson.",
+        "category": [
+            "Home",
+            "Cleaning"
+        ],
+        "price": 699,
+        "images": [
+            "dysonvacuum.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123471",
+        "sellerId": "S100016",
+        "name": "Fitbit Charge 4",
+        "description": "Advanced fitness tracker from Fitbit with built-in GPS.",
+        "category": [
+            "Electronics",
+            "Fitness Trackers"
+        ],
+        "price": 129,
+        "images": [
+            "fitbitcharge.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123472",
+        "sellerId": "S100017",
+        "name": "Kindle Paperwhite",
+        "description": "The best-selling Kindle, now waterproof with 2x the storage.",
+        "category": [
+            "Electronics",
+            "Tablets & E-Readers"
+        ],
+        "price": 129,
+        "images": [
+            "kindlepaperwhite.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123473",
+        "sellerId": "S100018",
+        "name": "Google Nest Hub",
+        "description": "Help at a glance from Google. See your life in one view, and get things done hands-free.",
+        "category": [
+            "Electronics",
+            "Smart Home"
+        ],
+        "price": 89.99,
+        "images": [
+            "googlenesthub.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123474",
+        "sellerId": "S100019",
+        "name": "Bose QuietComfort 35 II",
+        "description": "World-class noise cancellation headphones with Alexa enabled.",
+        "category": [
+            "Electronics",
+            "Audio"
+        ],
+        "price": 299,
+        "images": [
+            "boseheadphones.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123475",
+        "sellerId": "S100020",
+        "name": "Sony PlayStation 5",
+        "description": "Experience lightning-fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback, adaptive triggers and 3D Audio.",
+        "category": [
+            "Electronics",
+            "Gaming"
+        ],
+        "price": 499.99,
+        "images": [
+            "playstation5.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123476",
+        "sellerId": "S100021",
+        "name": "Xbox Series X",
+        "description": "The fastest, most powerful Xbox ever. Play thousands of titles from four generations of consoles.",
+        "category": [
+            "Electronics",
+            "Gaming"
+        ],
+        "price": 499.99,
+        "images": [
+            "xboxseriesx.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123477",
+        "sellerId": "S100022",
+        "name": "Apple MacBook Pro",
+        "description": "Apple M1 chip, 8GB RAM, 256GB SSD storage.",
+        "category": [
+            "Electronics",
+            "Computers"
+        ],
+        "price": 1299.99,
+        "images": [
+            "macbookpro.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123478",
+        "sellerId": "S100023",
+        "name": "Dell XPS 13",
+        "description": "Intel i7, 16GB RAM, 512GB SSD storage, 13.4\" FHD+ Touch Display",
+        "category": [
+            "Electronics",
+            "Computers"
+        ],
+        "price": 1399.99,
+        "images": [
+            "dellxps13.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123479",
+        "sellerId": "S100024",
+        "name": "Samsung Galaxy Tab S7",
+        "description": "Experience cinema quality viewing with the 11” Tab S7. With an edge-to-edge display and sAMOLEDTM screen.",
+        "category": [
+            "Electronics",
+            "Tablets & E-Readers"
+        ],
+        "price": 649.99,
+        "images": [
+            "galaxytabs7.jpg"
+        ],
+        "ratings": []
+    },
+    {
+        "productId": "P123480",
+        "sellerId": "S100025",
+        "name": "Roomba 675 Robot Vacuum",
+        "description": "Clean floors everyday - Provides a system of cleaning features & smart sensors that allow the robot to adjust to your unique home & deliver a daily clean.",
+        "category": [
+            "Home",
+            "Cleaning"
+        ],
+        "price": 279.99,
+        "images": [
+            "roomba675.jpg"
+        ],
+        "ratings": []
+    }
+]

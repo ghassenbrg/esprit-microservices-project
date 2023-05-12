@@ -5,7 +5,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: ${USER_MANAGEMENT_URL:http://localhost:8089}/oauth2/jwks
+          jwk-set-uri: ${USER_MANAGEMENT_URL:http://user-management-service:8089}/oauth2/jwks
   cloud:
     discovery:
       enabled: true

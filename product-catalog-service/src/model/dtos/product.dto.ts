@@ -36,11 +36,6 @@ export class CreateProductDto {
     @IsArray()
     @IsOptional()
     readonly images: string[];
-
-    @ApiProperty({description: 'Rating IDs for the product', required: false})
-    @IsArray()
-    @IsOptional()
-    readonly ratings: string[];
 }
 
 export class UpdateProductDto extends PartialType(CreateProductDto) {}

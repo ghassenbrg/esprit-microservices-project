@@ -1,0 +1,1 @@
+docker build -t product-catalog-service:1.0.0-SNAPSHOT -f ./Dockerfile ./
