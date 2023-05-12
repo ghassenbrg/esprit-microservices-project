@@ -1,6 +1,7 @@
 @echo off
 mvn clean install -DskipTests & ^
 docker build -t user-management-service:1.0.0-SNAPSHOT -f ./user-management-service/Dockerfile ./user-management-service & ^
+docker build -t inventory-service:1.0.0-SNAPSHOT -f ./inventory-service/Dockerfile ./inventory-service & ^
 docker build -t product-catalog-service:1.0.0-SNAPSHOT -f ./product-catalog-service/Dockerfile ./product-catalog-service & ^
 docker build -t order-processing-service:1.0.0-SNAPSHOT -f ./order-processing-service/Dockerfile ./order-processing-service & ^
 docker build -t config-server:1.0.0-SNAPSHOT -f ./config-server/Dockerfile ./config-server & ^
