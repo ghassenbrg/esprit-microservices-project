@@ -24,24 +24,31 @@ services:
     hostname: user-management-service
     environment:
       EUREKA_SERVER_URL: http://eureka-server:8761
+      USER_MANAGEMENT_HOSTNAME: user-management-service
     ports:
       - "8089:8089"
+    depends_on:
+      - eureka-server
+      - config-server
     networks:
       - esprit-project-network
 
   gateway:
     image: gateway:1.0.0-SNAPSHOT
     container_name: gateway
+    hostname: gateway
+    ports:
+      - "9191:9191"
     environment:
       EUREKA_SERVER_URL: http://eureka-server:8761
       USER_MANAGEMENT_URL: http://user-management-service:8089
-    ports:
-      - "9191:9191"
     depends_on:
       - eureka-server
       - user-management-service
+      - config-server
     networks:
       - esprit-project-network
+
   product-catalog-service:
     image: product-catalog-service:1.0.0-SNAPSHOT
     container_name: product-catalog-service
@@ -74,19 +81,6 @@ services:
       - esprit-project-network
     volumes:
       - mongo-data:/data/db
-  dummy-service:
-    image: dummy-service:1.0.0-SNAPSHOT
-    container_name: dummy-service
-    environment:
-      EUREKA_SERVER_URL: http://eureka-server:8761
-      USER_MANAGEMENT_URL: http://user-management-service:8089
-    ports:
-      - "8081:8081"
-    depends_on:
-      - eureka-server
-      - user-management-service
-    networks:
-      - esprit-project-network
 
   payment-service:
     image: payment-service:1.0.0-SNAPSHOT
@@ -98,6 +92,7 @@ services:
       - "8084:8084"
     depends_on:
       - eureka-server
+      - config-server
       - user-management-service
     networks:
       - esprit-project-network
@@ -113,6 +108,10 @@ services:
       PAYMENT_SERVICE_URL: http://payment-service:8084
     ports:
       - "8989:8989"
+    depends_on:
+      - eureka-server
+      - config-server
+      - user-management-service  
     networks:
       - esprit-project-network
 

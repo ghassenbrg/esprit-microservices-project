@@ -14,15 +14,11 @@ public class GatewayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
-	
 	@Bean
 	public SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) throws Exception {
-		return http
-		        .authorizeExchange().pathMatchers("/api/users/register","/oauth2/**").permitAll()
-		        .and().authorizeExchange().anyExchange().authenticated()
-		        .and()
-		        .csrf().disable()
-		        .build();
-	}
 
+		http.csrf().disable().authorizeExchange().pathMatchers("/actuator/**", "/api/users/register", "/oauth2/**").permitAll().and()
+				.authorizeExchange().anyExchange().authenticated().and().oauth2ResourceServer().jwt();
+		return http.build();
+	}
 }

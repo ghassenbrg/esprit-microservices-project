@@ -5,7 +5,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: ${USER_MANAGEMENT_URL:http://user-management-service:8089}/oauth2/jwks
+          jwk-set-uri: ${USER_MANAGEMENT_URL:http://localhost:8089}/oauth2/jwks
   cloud:
     discovery:
       enabled: true
@@ -18,7 +18,15 @@ spring:
       - id: user-management
         uri: lb://USER-MANAGEMENT-SERVICE
         predicates:
-        - Path=/api/**, /oauth2/**, /.well-known/**
+        - Path=/api/**
+      - id: oauth2-management
+        uri: lb://USER-MANAGEMENT-SERVICE
+        predicates:
+        - Path=/oauth2/**, /.well-known/**
+        filters:
+        - name: SetRequestHostHeader
+          args:
+            host: localhost:8089
       - id: product-catalog
         uri: lb://PRODUCT-CATALOG-SERVICE
         predicates:
@@ -29,7 +37,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761}/eureka
-  instance:
-      hostname: localhost
-
+logging:
+  level:
+    org.springframework.security: trace
 debug: true

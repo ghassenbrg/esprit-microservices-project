@@ -22,10 +22,6 @@ send post request on http://localhost:9191/api/users/register with body
 ![image](https://github.com/mazenaissa/esprit-microservices-project/assets/25006500/c50f33cf-5278-481c-bc3b-52fa8ff66272)
 
 # invoke endpoints from gateway using the retrived token
-curl --location --request GET 'http://localhost:9191/dummy' \
---header 'Accept: application/json' \
---header 'Authorization: Bearer xxxx...'
-
 curl --location --request GET 'http://localhost:9191/api/users' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer xxxx...'
