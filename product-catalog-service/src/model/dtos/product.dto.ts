@@ -9,8 +9,7 @@ export class CreateProductDto {
 
     @ApiProperty({description: 'Unique identifier for the seller'})
     @IsString()
-    @IsNotEmpty()
-    readonly sellerId: string;
+    readonly sellerId: number;
 
     @ApiProperty({description: 'Product name'})
     @IsString()

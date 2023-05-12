@@ -10,8 +10,8 @@ import { RatingModule } from './rating/rating.module';
 @Module({
   imports: [
     EurekaModule.forRoot({
-      disable: process.env.DISABLE_EUREKA === 'true',
-      disableDiscovery: process.env.DISABLE_EUREKA === 'true',
+      disable: String(process.env.DISABLE_EUREKA).toLowerCase() === 'true',
+      disableDiscovery: String(process.env.DISABLE_EUREKA).toLowerCase() === 'true',
       eureka: {
         host: process.env.EUREKA_HOST || 'eureka-server',
         port: process.env.EUREKA_PORT || 8761,

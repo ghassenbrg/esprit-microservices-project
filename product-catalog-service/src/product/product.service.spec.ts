@@ -46,14 +46,17 @@ describe('ProductService', () => {
   it('should create a product', async () => {
     const productDto = {
       name: 'Test',
-      description: 'Test Product',
+      description: 'Test description',
       price: 100,
-      sellerId: 'sellerId',
+      sellerId: 1,
       images: [],
-      category: 'test',
+      category: ['Test category'],
       ratings: [],
+      productId: 'productId123', // Add this
     };
+    
     const result = await service.create(productDto);
+    
     expect(result).toBeDefined();
   });
 

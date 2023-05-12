@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as hbs from 'hbs';
 import { join } from 'path';
 import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './common/exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -24,6 +25,7 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, 'views'));
   hbs.registerPartials(join(__dirname, 'views/partials'));
   app.setGlobalPrefix('product-catalog/api');
+  //app.useGlobalFilters(new AllExceptionsFilter());
   await app.listen(3000);
 }
 bootstrap();

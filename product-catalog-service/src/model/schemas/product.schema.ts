@@ -13,7 +13,7 @@ export class Product {
 
   @ApiProperty({ description: 'ID of the seller' })
   @Prop({ required: true })
-  sellerId: string;
+  sellerId: number;
 
   @ApiProperty({ description: 'Product name' })
   @Prop({ required: true })

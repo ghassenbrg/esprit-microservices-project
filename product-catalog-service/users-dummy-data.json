@@ -1,0 +1,130 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "role": "seller",
+        "email": "john.doe@abcd.com",
+        "password": "seller",
+        "username": "seller1"
+    },
+    {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "role": "seller",
+        "email": "jane.smith@abcd.com",
+        "password": "seller",
+        "username": "seller2"
+    },
+    {
+        "firstName": "Bob",
+        "lastName": "Williams",
+        "role": "seller",
+        "email": "bob.williams@abcd.com",
+        "password": "seller",
+        "username": "seller3"
+    },
+    {
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "role": "seller",
+        "email": "alice.johnson@abcd.com",
+        "password": "seller",
+        "username": "seller4"
+    },
+    {
+        "firstName": "Tom",
+        "lastName": "Brown",
+        "role": "seller",
+        "email": "tom.brown@abcd.com",
+        "password": "seller",
+        "username": "seller5"
+    },
+    {
+        "firstName": "Emma",
+        "lastName": "Taylor",
+        "role": "seller",
+        "email": "emma.taylor@abcd.com",
+        "password": "seller",
+        "username": "seller6"
+    },
+    {
+        "firstName": "Charlie",
+        "lastName": "Davis",
+        "role": "seller",
+        "email": "charlie.davis@abcd.com",
+        "password": "seller",
+        "username": "seller7"
+    },
+    {
+        "firstName": "Sophie",
+        "lastName": "Miller",
+        "role": "seller",
+        "email": "sophie.miller@abcd.com",
+        "password": "seller",
+        "username": "seller8"
+    },
+    {
+        "firstName": "George",
+        "lastName": "Clark",
+        "role": "seller",
+        "email": "george.clark@abcd.com",
+        "password": "seller",
+        "username": "seller9"
+    },
+    {
+        "firstName": "Olivia",
+        "lastName": "Jones",
+        "role": "seller",
+        "email": "olivia.jones@abcd.com",
+        "password": "seller",
+        "username": "seller10"
+    },
+    {
+        "firstName": "William",
+        "lastName": "Anderson",
+        "role": "buyer",
+        "email": "william.anderson@abcd.com",
+        "password": "buyer",
+        "username": "buyer1"
+    },
+    {
+        "firstName": "Mia",
+        "lastName": "Thomas",
+        "role": "buyer",
+        "email": "mia.thomas@abcd.com",
+        "password": "buyer",
+        "username": "buyer2"
+    },
+    {
+        "firstName": "James",
+        "lastName": "Jackson",
+        "role": "buyer",
+        "email": "james.jackson@abcd.com",
+        "password": "buyer",
+        "username": "buyer3"
+    },
+    {
+        "firstName": "Ava",
+        "lastName": "White",
+        "role": "buyer",
+        "email": "ava.white@abcd.com",
+        "password": "buyer",
+        "username": "buyer4"
+    },
+    {
+        "firstName": "Henry",
+        "lastName": "Harris",
+        "role": "buyer",
+        "email": "henry.harris@abcd.com",
+        "password": "buyer",
+        "username": "buyer5"
+    },
+    {
+        "firstName": "Ella",
+        "lastName": "Martin",
+        "role": "admin",
+        "email": "ella.martin@abcd.com",
+        "password": "admin",
+        "username": "admin"
+    }
+]

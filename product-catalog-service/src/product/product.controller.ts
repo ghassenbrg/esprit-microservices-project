@@ -57,12 +57,29 @@ export class ProductController {
     await this.productService.delete(id);
   }
 
+  @Delete()
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiOperation({ summary: 'Delete all products' })
+  @ApiResponse({ status: 204, description: 'All products have been deleted.' })
+  async deleteAll(): Promise<void> {
+    await this.productService.deleteAllProducts();
+  }
+
   @Get('seller/:sellerId')
   @ApiOperation({ summary: 'Retrieve products by seller ID' })
   @ApiParam({ name: 'sellerId', required: true, description: 'ID of the seller' })
   @ApiResponse({ status: 200, description: 'List of products', type: [Product] })
   async findBySeller(@Param('sellerId') sellerId: string): Promise<Product[]> {
     return this.productService.findBySeller(sellerId);
+  }
+
+  @Delete('seller/:sellerId')
+  @ApiOperation({ summary: 'Delete products by seller ID' })
+  @ApiParam({ name: 'sellerId', required: true, description: 'ID of the seller' })
+  @ApiResponse({ status: 204, description: 'The products have been deleted.' })
+  @ApiBadRequestResponse({ description: 'Invalid seller ID.' })
+  async deleteBySeller(@Param('sellerId') sellerId: string): Promise<boolean> {
+    return this.productService.deleteBySeller(sellerId);
   }
 
   @Get('search/:name')
@@ -94,4 +111,12 @@ export class ProductController {
   async getLowStock(): Promise<Product[]> {
     return this.productService.getLowStock();
   }
+
+  @Post('loadDummyProducts')
+  @ApiOperation({ summary: 'Load dummy products into the database' })
+  @ApiResponse({ status: 200, description: 'Dummy products loaded' })
+  async loadDummyProducts(): Promise<boolean> {
+    return this.productService.loadDummyProducts();
+  }
+
 }

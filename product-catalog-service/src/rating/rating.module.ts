@@ -7,6 +7,7 @@ import { ProductModule } from 'src/product/product.module';
 import { Rating, RatingSchema } from '../model/schemas/rating.schema';
 import { RatingController } from './rating.controller';
 import { RatingService } from './rating.service';
+import { CommonModule } from 'src/common/common.module';
 
 
 @Module({
@@ -17,6 +18,7 @@ import { RatingService } from './rating.service';
     ]),
     ConfigModule.forRoot(),
     HttpModule,
+    CommonModule,
     forwardRef(() => ProductModule),
   ],
   controllers: [RatingController],

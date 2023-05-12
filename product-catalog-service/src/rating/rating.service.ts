@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { HttpService } from 'src/common/http.service';
 import { CreateRatingDto, UpdateRatingDto } from 'src/model/dtos/rating.dto';
 import { ProductDocument } from '../model/schemas/product.schema';
 import { Rating, RatingDocument } from '../model/schemas/rating.schema';
@@ -9,7 +10,8 @@ import { Rating, RatingDocument } from '../model/schemas/rating.schema';
 export class RatingService {
   constructor(
     @InjectModel('Rating') private ratingModel: Model<RatingDocument>,
-    @InjectModel('Product') private productModel: Model<ProductDocument>
+    @InjectModel('Product') private productModel: Model<ProductDocument>,
+    private httpService: HttpService,
   ) { }
 
   async addRatingToProduct(productId: string, createRatingDto: CreateRatingDto): Promise<Rating> {
@@ -52,5 +54,26 @@ export class RatingService {
     }
     const sum = product.ratings.reduce((a, b) => a + b.rating, 0);
     return sum / product.ratings.length;
+  }
+
+  async deleteByProduct(productId: string): Promise<void> {
+    const product = await this.productModel.findOne({ productId });
+    if (!product) {
+      throw new NotFoundException('Product not found');
+    }
+    await this.ratingModel.deleteMany({ product: product._id }).exec();
+    product.ratings = [];
+    await product.save();
+  }
+
+  async deleteAllRatings(blindDelete?: boolean): Promise<void> {
+    await this.ratingModel.deleteMany({}).exec();
+    if (!blindDelete) {
+      const products = await this.productModel.find();
+      for (const product of products) {
+        product.ratings = [];
+        await product.save();
+      }
+    }
   }
 }
