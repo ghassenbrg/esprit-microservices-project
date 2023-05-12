@@ -34,6 +34,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,6 +47,10 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+
+import feign.RequestInterceptor;
+
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -138,6 +143,14 @@ public class AuthorizationServerConfiguration {
 		return jdbcRegisteredClientRepository;
 	}
 
+	@Bean
+	public RequestInterceptor requestInterceptor() {
+		return requestTemplate -> {
+			requestTemplate.header("Authorization",
+					"Bearer " + ((Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getTokenValue());
+		};
+	}
+	
 	@Bean
 	public JWKSource<SecurityContext> jwkSource() {
 		KeyPair keyPair = generateRsaKey();

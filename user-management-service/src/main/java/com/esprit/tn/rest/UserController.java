@@ -1,10 +1,15 @@
 package com.esprit.tn.rest;
 
+import com.esprit.tn.clients.ProductsClients;
 import com.esprit.tn.entity.User;
 import com.esprit.tn.model.UserDTO;
 import com.esprit.tn.service.UserService;
+
+import javax.transaction.Transactional;
 import javax.validation.Valid;
+
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 	private final UserService userService;
-
-	public UserController(final UserService userService) {
+	private final ProductsClients productsClients;
+	
+	public UserController(final UserService userService ,final ProductsClients productsClients) {
 		this.userService = userService;
+		this.productsClients = productsClients;
 	}
 
 	@GetMapping
@@ -62,10 +69,14 @@ public class UserController {
 		return ResponseEntity.ok().build();
 	}
 
+	@Transactional
 	@PreAuthorize("hasRole('admin')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteUser(@PathVariable final Long id) {
+		UserDTO user = userService.get(id);
 		userService.delete(id);
+		if (user.getRole().contains("seller"))
+			productsClients.deleteSellerProducts(id);
 		return ResponseEntity.noContent().build();
 	}
 
