@@ -3,7 +3,6 @@ package tn.esprit.payment.service;
 import tn.esprit.payment.model.Payment;
 import tn.esprit.payment.payload.ApiResponse;
 import tn.esprit.payment.payload.PagedResponse;
-import tn.esprit.payment.payload.PaymentRequest;
 
 /**
  * 
@@ -20,6 +19,6 @@ public interface PaymentService {
 
 	PagedResponse<Payment> getPaymentsByUserId(Long userId, int page, int size);
 
-	ApiResponse createPayment(PaymentRequest paymentRequest);
+	public ApiResponse createPayment(Payment payment);
 
 }

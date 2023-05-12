@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.payment.model.Payment;
 import tn.esprit.payment.payload.ApiResponse;
 import tn.esprit.payment.payload.PagedResponse;
-import tn.esprit.payment.payload.PaymentRequest;
 import tn.esprit.payment.service.PaymentService;
 import tn.esprit.payment.utils.AppUtils;
 
@@ -36,12 +36,12 @@ public class PaymentController {
 		return paymentService.getPaymentById(id);
 	}
 
-	@GetMapping("/order-id/{id}")
+	@GetMapping("/byorder/{id}")
 	public Payment getPaymentByOrderId(@PathVariable(name = "id") Long id) {
 		return paymentService.getPaymentByOrderId(id);
 	}
 
-	@GetMapping("/user-id/{id}")
+	@GetMapping("/byuser/{id}")
 	public PagedResponse<Payment> getPaymentsByUserId(@PathVariable(name = "id") Long id,
 			@RequestParam(name = "page", required = false, defaultValue = AppUtils.DEFAULT_PAGE_NUMBER) Integer page,
 			@RequestParam(name = "size", required = false, defaultValue = AppUtils.DEFAULT_PAGE_SIZE) Integer size) {
@@ -49,8 +49,8 @@ public class PaymentController {
 	}
 
 	@PostMapping
-	public ResponseEntity<ApiResponse> createPayment(PaymentRequest paymentRequest) {
-		ApiResponse response = paymentService.createPayment(paymentRequest);
+	public ResponseEntity<ApiResponse> createPayment(@RequestBody Payment payment) {
+		ApiResponse response = paymentService.createPayment(payment);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 

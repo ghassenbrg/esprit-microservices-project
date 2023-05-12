@@ -3,7 +3,6 @@ package tn.esprit.payment.service;
 import java.util.Collections;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +14,6 @@ import tn.esprit.payment.exception.ResourceNotFoundException;
 import tn.esprit.payment.model.Payment;
 import tn.esprit.payment.payload.ApiResponse;
 import tn.esprit.payment.payload.PagedResponse;
-import tn.esprit.payment.payload.PaymentRequest;
 import tn.esprit.payment.repository.PaymentRepository;
 import tn.esprit.payment.utils.AppUtils;
 
@@ -29,7 +27,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
-	
+
 	@Override
 	public PagedResponse<Payment> getAllPayments(int page, int size) {
 		AppUtils.validatePageNumberAndSize(page, size);
@@ -64,16 +62,8 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public ApiResponse createPayment(PaymentRequest paymentRequest) {
+	public ApiResponse createPayment(Payment payment) {
 
-		Payment payment = new Payment();
-		payment.setOrderId(paymentRequest.getOrderId());
-		payment.setUserId(paymentRequest.getUserId());
-		payment.setCardHolderName(paymentRequest.getCardHolderName());
-		payment.setAmount(paymentRequest.getAmount());
-		payment.setCardNo(paymentRequest.getCardNo());
-		payment.setCvv(paymentRequest.getCvv());
-		payment.setExpDate(paymentRequest.getExpDate());
 		paymentRepository.save(payment);
 
 		return new ApiResponse(Boolean.TRUE, "Transaction Completed Successfully");
