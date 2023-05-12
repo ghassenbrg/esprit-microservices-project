@@ -20,8 +20,6 @@ public class PaymentRequest {
 	private Long orderId;
 	@NotNull
 	private Long userId;
-	@NotNull
-	private Long buyerId;
 	@NotBlank
 	private BigDecimal amount;
 	@NotBlank
