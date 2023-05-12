@@ -11,7 +11,8 @@ send post request on http://localhost:9191/api/users/register with body
 	"role":"buyer",
 	"email":"abcd@abcd.com",
 	"password":"test",
-	"username":"test"
+	"username":"test",
+	"address" :"testaddress, monastir,tunisia"
 }
 ![image](https://github.com/mazenaissa/esprit-microservices-project/assets/25006500/af0ac729-3329-4ab5-8df1-30f9ac1b1c5c)
 

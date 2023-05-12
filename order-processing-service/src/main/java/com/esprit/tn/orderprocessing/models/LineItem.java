@@ -30,9 +30,8 @@ public class LineItem {
 	@Column(name = "product_price")
 	private BigDecimal productPrice;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_id")
-	private Order order;
+	@Column(name = "order_id")
+	private Long orderId;
 
 	public Long getLineItemId() {
 		return lineItemId;
@@ -66,12 +65,12 @@ public class LineItem {
 		this.productPrice = productPrice;
 	}
 
-	public Order getOrder() {
-		return order;
+	public Long getOrderId() {
+		return orderId;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
 }

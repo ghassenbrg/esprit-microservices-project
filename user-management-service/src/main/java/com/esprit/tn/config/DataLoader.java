@@ -27,7 +27,7 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) throws StreamReadException, DatabindException, IOException {
-    	 ObjectMapper mapper = new ObjectMapper();
+    	ObjectMapper mapper = new ObjectMapper();
   		CollectionType type = mapper.getTypeFactory().constructCollectionType(List.class, UserDTO.class);
   		List<UserDTO> users = mapper.readValue(new ClassPathResource("users.json").getInputStream(), type);
   		users.forEach(u -> userService.create(u));

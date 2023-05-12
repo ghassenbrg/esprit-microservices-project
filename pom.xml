@@ -16,6 +16,7 @@
         <module>payment-service</module>
         <module>eureka-server</module>
         <module>gateway</module>
+        <module>inventory-service</module>
     </modules>
 
 </project>

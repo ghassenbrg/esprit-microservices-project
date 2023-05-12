@@ -32,7 +32,7 @@ public class Order {
 	@Column(name = "payment_id")
 	private String paymentId;
 
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LineItem> items = new ArrayList<>();
 
 	public Long getOrderId() {
