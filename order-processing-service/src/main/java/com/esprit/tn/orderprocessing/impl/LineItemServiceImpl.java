@@ -35,7 +35,7 @@ public class LineItemServiceImpl implements LineItemService {
 		List<LineItem> items = new ArrayList<>();
 		List<LineItem> allItems = getAllItems();
 		allItems.forEach(item -> {
-			if (item.getOrder() != null && item.getOrder().getOrderId() != null && item.getOrder().getOrderId().equals(orderId)) {
+			if (item.getOrderId() != null && item.getOrderId() != null && item.getOrderId().equals(orderId)) {
 				items.add(item);
 			}
 		});
@@ -47,7 +47,7 @@ public class LineItemServiceImpl implements LineItemService {
 		Order order = orderService.findOrderById(orderId);
 		// connect with catalog service to check if product exists
 		if (lineItem != null && order != null && productExist(lineItem.getProductId())) {
-			lineItem.setOrder(order);
+			lineItem.setOrderId(orderId);
 		}
 		lineItemRepository.save(lineItem);
 	}
@@ -57,13 +57,13 @@ public class LineItemServiceImpl implements LineItemService {
 		Order order = orderService.findOrderById(orderId);
 		LineItem lineItem = lineItemRepository.findById(lineItemId).orElse(null);
 		if (lineItem != null && order != null) {
-			lineItem.setOrder(null);
+			lineItem.setOrderId(null);
 		}
 		lineItemRepository.save(lineItem);
 	}
 
-    private boolean productExist(String productId) {
-        // TODO;
-    	return true;
-    }
+	private boolean productExist(String productId) {
+		// TODO;
+		return true;
+	}
 }
