@@ -56,6 +56,7 @@ public class OrderServiceImpl implements OrderService {
 		if (order != null) {
 			order.setCustomerId(customerId);
 		}
+		// connect with payment service to pay 
 		orderRepository.save(order);
 	}
 
@@ -78,5 +79,9 @@ public class OrderServiceImpl implements OrderService {
 		}
 		orderRepository.delete(order);
 	}
+	
+    private void payOrder(String productId) {
+        // TODO
+    }
 
 }

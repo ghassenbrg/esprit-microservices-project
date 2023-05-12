@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 
 public class LineItemDto {
 
-	private Long itemId;
+	private Long id;
 	private String productId;
 	private int quantity;
 	private BigDecimal productPrice;
 
-	public Long getItemId() {
-		return itemId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setItemId(Long itemId) {
-		this.itemId = itemId;
+	public void setid(Long id) {
+		this.id = id;
 	}
 
 	public String getProductId() {

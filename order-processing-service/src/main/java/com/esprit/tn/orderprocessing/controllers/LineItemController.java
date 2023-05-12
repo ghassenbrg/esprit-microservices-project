@@ -42,7 +42,7 @@ public class LineItemController {
 	}
 
 	@PostMapping("/{orderId}")
-	public ResponseEntity<ApiResponse> addItem(Long orderId, @RequestBody LineItemDto lineItem) {
+	public ResponseEntity<ApiResponse> addItem(@PathVariable("orderId") Long orderId, @RequestBody LineItemDto lineItem) {
 		lineItemService.addItemToOrder(orderId, convertLineItemDtoToLineItemEntity(lineItem));
 		ApiResponse apiResponse = new ApiResponse(Boolean.TRUE, "Item added successfully!");
 		return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
