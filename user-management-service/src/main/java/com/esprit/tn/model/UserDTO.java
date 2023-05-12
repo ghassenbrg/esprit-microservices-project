@@ -22,6 +22,9 @@ public class UserDTO {
 
 	@Size
 	private String role;
+	
+	@Size(max = 255)
+	private String address;
 
 	@Size(max = 255)
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -81,6 +84,14 @@ public class UserDTO {
 
 	public void setPassword(final String password) {
 		this.password = password;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

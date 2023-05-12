@@ -56,6 +56,9 @@ public class User implements UserDetails{
 
     @Column(nullable = false)
     private String role;
+    
+    @Column(nullable = false)
+    private String address;
 
     @Column
     private Boolean isEnabled=Boolean.TRUE;
@@ -184,5 +187,13 @@ public class User implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority(role));
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
