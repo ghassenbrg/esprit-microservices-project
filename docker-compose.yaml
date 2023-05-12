@@ -106,6 +106,7 @@ services:
   payment-service:
     image: payment-service:1.0.0-SNAPSHOT
     container_name: payment-service
+    hostname: payment-service
     environment:
       EUREKA_SERVER_URL: http://eureka-server:8761
       USER_MANAGEMENT_URL: http://user-management-service:8089
