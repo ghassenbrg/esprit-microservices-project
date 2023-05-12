@@ -29,10 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
-
-	@Autowired
-	private ModelMapper modelMapper;
-
+	
 	@Override
 	public PagedResponse<Payment> getAllPayments(int page, int size) {
 		AppUtils.validatePageNumberAndSize(page, size);
@@ -70,10 +67,16 @@ public class PaymentServiceImpl implements PaymentService {
 	public ApiResponse createPayment(PaymentRequest paymentRequest) {
 
 		Payment payment = new Payment();
-		modelMapper.map(paymentRequest, payment);
+		payment.setOrderId(paymentRequest.getOrderId());
+		payment.setUserId(paymentRequest.getUserId());
+		payment.setCardHolderName(paymentRequest.getCardHolderName());
+		payment.setAmount(paymentRequest.getAmount());
+		payment.setCardNo(paymentRequest.getCardNo());
+		payment.setCvv(paymentRequest.getCvv());
+		payment.setExpDate(paymentRequest.getExpDate());
 		paymentRepository.save(payment);
 
-		return new ApiResponse(Boolean.FALSE, "Transaction Completed Successfully");
+		return new ApiResponse(Boolean.TRUE, "Transaction Completed Successfully");
 	}
 
 }
