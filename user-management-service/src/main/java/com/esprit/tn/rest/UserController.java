@@ -32,6 +32,16 @@ public class UserController {
 	public ResponseEntity<List<UserDTO>> getAllUsers() {
 		return ResponseEntity.ok(userService.findAll());
 	}
+	
+	@GetMapping("/sellers")
+	public ResponseEntity<List<UserDTO>> getAllSellers() {
+		return ResponseEntity.ok(userService.findAllSellers());
+	}
+	
+	@GetMapping("/buyers")
+	public ResponseEntity<List<UserDTO>> getAllBuyers() {
+		return ResponseEntity.ok(userService.findAllBuyers());
+	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<UserDTO> getUser(@PathVariable final Long id) {
@@ -46,7 +56,7 @@ public class UserController {
 	}
 
 	@PutMapping("/updateProfile/{id}")
-	//@PreAuthorize("authentication.principal.claims['id']==#id")
+	@PreAuthorize("authentication.principal.claims['id']==#id")
 	public ResponseEntity<Void> updateUser(@PathVariable final Long id, @RequestBody @Valid final UserDTO userDTO) {
 		userService.update(id, userDTO);
 		return ResponseEntity.ok().build();

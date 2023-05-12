@@ -4,13 +4,15 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.server.authorization.OAuth2TokenType;
-import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
+import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
@@ -20,7 +22,11 @@ import org.springframework.security.oauth2.server.authorization.settings.ClientS
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.security.oauth2.server.authorization.token.JwtEncodingContext;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -70,10 +76,15 @@ public class AuthorizationServerConfiguration {
 	@Bean
 	@Order(2)
 	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+		
+		JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtRoleConverter());
+        
+        
 		http.authorizeHttpRequests((authorize) -> authorize.antMatchers("/api/users/register").permitAll()).csrf()
 				.disable();
 		http.authorizeHttpRequests((authorize) -> authorize.antMatchers("/api/**").authenticated())
-				.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt).csrf().disable();
+				.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter).and().and().csrf().disable();
 		http.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
 				.authenticationProvider(authProvider())
 				// Form login handles the redirect to the login page from the
@@ -100,9 +111,18 @@ public class AuthorizationServerConfiguration {
 		authProvider.setPasswordEncoder(encoder());
 		return authProvider;
 	}
-
+	
+	@Bean 
+	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+		return new JdbcTemplate(dataSource);
+	}
+	
 	@Bean
-	public RegisteredClientRepository registeredClientRepository() {
+	public RegisteredClientRepository registeredClientRepository(DataSource dataSource) {
+		ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator(false, false, "UTF-8",
+				new ClassPathResource(
+						"org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql"));
+		resourceDatabasePopulator.execute(dataSource);
 		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
 				.clientId("microservices-client")
 				.clientSecret("$2a$10$/wr1cDRlGPnkKGZS9HcRZOv3dMPDzfV0Mg.4EIfvQGS9i/gy42qGS")
@@ -110,11 +130,12 @@ public class AuthorizationServerConfiguration {
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS).redirectUri("http://localhost:4200")
+				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS).redirectUri("https://oauth.pstmn.io/v1/callback").redirectUri("http://localhost:4200")
 				.scope(OidcScopes.OPENID).scope(OidcScopes.PROFILE).scope(OidcScopes.EMAIL)
 				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(false).build()).build();
-
-		return new InMemoryRegisteredClientRepository(registeredClient);
+		JdbcRegisteredClientRepository jdbcRegisteredClientRepository = new JdbcRegisteredClientRepository(jdbcTemplate(dataSource));
+		jdbcRegisteredClientRepository.save(registeredClient);
+		return jdbcRegisteredClientRepository;
 	}
 
 	@Bean

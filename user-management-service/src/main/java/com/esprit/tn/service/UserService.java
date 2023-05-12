@@ -30,6 +30,20 @@ public class UserService {
                 .map((user) -> mapToDTO(user, new UserDTO()))
                 .collect(Collectors.toList());
     }
+    
+    public List<UserDTO> findAllSellers() {
+        final List<User> users = userRepository.findByRole("seller");
+        return users.stream()
+                .map((user) -> mapToDTO(user, new UserDTO()))
+                .collect(Collectors.toList());
+    }
+    
+    public List<UserDTO> findAllBuyers() {
+        final List<User> users = userRepository.findByRole("buyer");
+        return users.stream()
+                .map((user) -> mapToDTO(user, new UserDTO()))
+                .collect(Collectors.toList());
+    }
 
     public UserDTO get(final Long id) {
         return userRepository.findById(id)

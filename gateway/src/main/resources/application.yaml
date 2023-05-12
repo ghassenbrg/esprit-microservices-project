@@ -11,10 +11,6 @@ spring:
       enabled: true
     gateway:
       routes:
-      - id: dummy
-        uri: lb://DUMMY-SERVICE
-        predicates:
-        - Path=/dummy/**
       - id: user-management
         uri: lb://USER-MANAGEMENT-SERVICE
         predicates:
