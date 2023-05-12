@@ -3,6 +3,7 @@ package com.esprit.tn.orderprocessing.services;
 import java.util.List;
 
 import com.esprit.tn.orderprocessing.models.Order;
+import com.esprit.tn.orderprocessing.payload.OrderDto;
 
 /**
  * 
@@ -20,7 +21,7 @@ public interface OrderService {
 
 	void createOrder(Long customerId, Order order);
 
-	void updateOrder(Long customerId, Long orderId, Order order);
+	void updateOrder(Long customerId, Long orderId, OrderDto order);
 
 	void cancelOrder(Long customerId, Long orderId);
 

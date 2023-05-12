@@ -45,7 +45,8 @@ public class LineItemServiceImpl implements LineItemService {
 	@Override
 	public void addItemToOrder(Long orderId, LineItem lineItem) {
 		Order order = orderService.findOrderById(orderId);
-		if (lineItem != null && order != null) {
+		// connect with catalog service to check if product exists
+		if (lineItem != null && order != null && productExist(lineItem.getProductId())) {
 			lineItem.setOrder(order);
 		}
 		lineItemRepository.save(lineItem);
@@ -61,4 +62,8 @@ public class LineItemServiceImpl implements LineItemService {
 		lineItemRepository.save(lineItem);
 	}
 
+    private boolean productExist(String productId) {
+        // TODO;
+    	return true;
+    }
 }
