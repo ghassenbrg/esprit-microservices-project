@@ -26,11 +26,12 @@ services:
       EUREKA_SERVER_URL: http://eureka-server:8761
       USER_MANAGEMENT_HOSTNAME: user-management-service
       PRODUCTS_SERVICE_URL: http://product-catalog-service:3000/product-catalog/api
+      CONFIG_SERVER_URL: http://config-server:8888
     ports:
       - "8089:8089"
     depends_on:
-      - eureka-server
-      - config-server
+      - config-server 
+      - eureka-server    
     networks:
       - esprit-project-network
 
