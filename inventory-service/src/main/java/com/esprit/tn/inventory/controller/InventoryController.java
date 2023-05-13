@@ -24,8 +24,8 @@ public class InventoryController {
 
 	@Autowired
 	private InventoryService inventoryService;
-	@Autowired
-	private QuantityClient quantityClient;
+	/* @Autowired
+	private QuantityClient quantityClient; */
 
 	@GetMapping
 	public ResponseEntity<List<Inventory>> getAllInventories() {
@@ -39,7 +39,7 @@ public class InventoryController {
 		return new ResponseEntity<>(inventory, HttpStatus.OK);
 	}
 	
-	@GetMapping("/inventory/{productId}")
+	@GetMapping("/product/{productId}")
 	public ResponseEntity<Inventory> getInventoryByProductId(@PathVariable Long productId) {
 		Inventory inventory = inventoryService.getInventoryByProductId(productId);
 		return new ResponseEntity<>(inventory, HttpStatus.OK);

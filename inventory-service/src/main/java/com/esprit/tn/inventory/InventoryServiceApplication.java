@@ -15,11 +15,11 @@ public class InventoryServiceApplication {
 		SpringApplication.run(InventoryServiceApplication.class, args);
 	}
 
-	@Bean
+/* 	@Bean
 	public RequestInterceptor requestInterceptor() {
 		return requestTemplate -> {
 			requestTemplate.header("Authorization",
 					"Bearer " + ((Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getTokenValue());
 		};
-	}
+	} */
 }
