@@ -10,6 +10,8 @@ import javax.validation.Valid;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
+	Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	private final UserService userService;
 	private final ProductsClients productsClients;
 	
@@ -65,6 +69,7 @@ public class UserController {
 	@PutMapping("/updateProfile/{id}")
 	@PreAuthorize("authentication.principal.claims['id']==#id")
 	public ResponseEntity<Void> updateUser(@PathVariable final Long id, @RequestBody @Valid final UserDTO userDTO) {
+		logger.info("update user profile..........");
 		userService.update(id, userDTO);
 		return ResponseEntity.ok().build();
 	}
@@ -74,9 +79,12 @@ public class UserController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteUser(@PathVariable final Long id) {
 		UserDTO user = userService.get(id);
+		logger.info("deleting user..........");
 		userService.delete(id);
-		if (user.getRole().contains("seller"))
+		if (user.getRole().contains("seller")) {
+			logger.info("user is seller,deleting it's products..........");
 			productsClients.deleteSellerProducts(id);
+		}
 		return ResponseEntity.noContent().build();
 	}
 
