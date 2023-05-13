@@ -55,6 +55,7 @@ services:
     hostname: product-catalog-service
     ports:
       - "3001:3000"
+      - "9229:9229"
     links:
       - mongo
     environment:
@@ -63,7 +64,7 @@ services:
       EUREKA_PORT: 8761
       JWKS_URI: http://user-management-service:8089/oauth2/jwks
       JWT_AUDIENCE: microservices-client
-      JWT_ISSUER: http://user-management-service:8089
+      JWT_ISSUER: http://localhost:8089
       USER_MANAGEMENT_SERVICE_URL: http://user-management-service:8089
       INVENTORY_SERVICE_URL: http://inventory-service:9786
     depends_on:

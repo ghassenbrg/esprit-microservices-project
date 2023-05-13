@@ -18,4 +18,4 @@ COPY --from=builder /app/dist ./dist
 COPY package*.json ./
 RUN npm install --only=production
 
-CMD ["node", "dist/main"]
+CMD ["node", "--inspect=0.0.0.0:9229", "dist/main"]

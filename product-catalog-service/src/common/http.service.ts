@@ -48,6 +48,7 @@ export class HttpService extends NestHttpService {
             "email": "john.doe@abcd.com",
             "password": "seller",
             "username": "seller1",
+            "sub": "seller1",
             "id": 1
         }
         const token = this.req.headers.authorization?.split(' ')[1]; // Assuming 'Bearer <token>'
