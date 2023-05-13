@@ -69,7 +69,7 @@ export class ProductController {
   @ApiOperation({ summary: 'Retrieve products by seller ID' })
   @ApiParam({ name: 'sellerId', required: true, description: 'ID of the seller' })
   @ApiResponse({ status: 200, description: 'List of products', type: [Product] })
-  async findBySeller(@Param('sellerId') sellerId: string): Promise<Product[]> {
+  async findBySeller(@Param('sellerId') sellerId: number): Promise<Product[]> {
     return this.productService.findBySeller(sellerId);
   }
 
@@ -78,7 +78,7 @@ export class ProductController {
   @ApiParam({ name: 'sellerId', required: true, description: 'ID of the seller' })
   @ApiResponse({ status: 204, description: 'The products have been deleted.' })
   @ApiBadRequestResponse({ description: 'Invalid seller ID.' })
-  async deleteBySeller(@Param('sellerId') sellerId: string): Promise<boolean> {
+  async deleteBySeller(@Param('sellerId') sellerId: number): Promise<{ deletedCount: number }> {
     return this.productService.deleteBySeller(sellerId);
   }
 
