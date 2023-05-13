@@ -75,6 +75,7 @@ public class UserService {
         userDTO.setEmail(user.getEmail());
         userDTO.setRole(user.getRole());
         userDTO.setUsername(user.getUsername());
+        userDTO.setAddress(user.getAddress());
         return userDTO;
     }
 
@@ -85,6 +86,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setRole(userDTO.getRole());
         user.setUsername(userDTO.getUsername());
+        user.setAddress(userDTO.getAddress());
         return user;
     }
 

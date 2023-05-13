@@ -2,7 +2,7 @@ server:
   port: 8089
 spring:
   application:
-    name: user-management-service    
+    name: user-management-service   
   datasource:
     url: ${JDBC_DATABASE_URL:jdbc:h2:mem:my-app}
     username: ${JDBC_DATABASE_USERNAME:sa}
