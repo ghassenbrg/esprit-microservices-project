@@ -47,22 +47,22 @@ public class DataLoader implements ApplicationRunner {
 		orders.forEach(order -> orderService.createOrder((long) 1, order));
 
 		// mock items data
-		CollectionType typeItem = mapper.getTypeFactory().constructCollectionType(List.class, LineItem.class);
-		List<LineItem> lineItems = mapper.readValue(new ClassPathResource("/line-items-dummy-data.json").getInputStream(),
-				typeItem);
-
-		for (int i = 1; i < 6; i++) {
-			lineItemService.addItemToOrder((long) 1, lineItems.get(i));
-		}
-		for (int j = 6; j < 11; j++) {
-			lineItemService.addItemToOrder((long) 2, lineItems.get(j));
-		}
-		for (int k = 11; k < 16; k++) {
-			lineItemService.addItemToOrder((long) 3, lineItems.get(k));
-		}
-		for (int l = 16; l < 20; l++) {
-			lineItemService.addItemToOrder((long) 4, lineItems.get(l));
-		}
+//		CollectionType typeItem = mapper.getTypeFactory().constructCollectionType(List.class, LineItem.class);
+//		List<LineItem> lineItems = mapper.readValue(new ClassPathResource("/line-items-dummy-data.json").getInputStream(),
+//				typeItem);
+//
+//		for (int i = 1; i < 6; i++) {
+//			lineItemService.addItemToOrder((long) 1, lineItems.get(i));
+//		}
+//		for (int j = 6; j < 11; j++) {
+//			lineItemService.addItemToOrder((long) 2, lineItems.get(j));
+//		}
+//		for (int k = 11; k < 16; k++) {
+//			lineItemService.addItemToOrder((long) 3, lineItems.get(k));
+//		}
+//		for (int l = 16; l < 20; l++) {
+//			lineItemService.addItemToOrder((long) 4, lineItems.get(l));
+//		}
 	}
 
 }

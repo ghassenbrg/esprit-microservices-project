@@ -35,6 +35,10 @@ spring:
         uri: lb://NOTIFICATION-SERVICE
         predicates:
         - Path=/api/notification/**
+      - id: order-processing
+        uri: lb://ORDER-PROCESSING-SERVICE
+        predicates:
+        - Path=/orders/**, /items/**
 server:
   port: 9191
 eureka:
