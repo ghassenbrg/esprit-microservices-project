@@ -31,6 +31,10 @@ spring:
         uri: lb://PAYMENT-SERVICE
         predicates:
         - Path=/api/payments/**
+      - id: notification-service
+        uri: lb://NOTIFICATION-SERVICE
+        predicates:
+        - Path=/api/notification/**
 server:
   port: 9191
 eureka:

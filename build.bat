@@ -6,6 +6,7 @@ docker build -t product-catalog-service:1.0.0-SNAPSHOT -f ./product-catalog-serv
 docker build -t order-processing-service:1.0.0-SNAPSHOT -f ./order-processing-service/Dockerfile ./order-processing-service & ^
 docker build -t config-server:1.0.0-SNAPSHOT -f ./config-server/Dockerfile ./config-server & ^
 docker build -t payment-service:1.0.0-SNAPSHOT -f ./payment-service/Dockerfile ./payment-service & ^
+docker build -t notification-service:1.0.0-SNAPSHOT -f ./notification-service/Dockerfile ./notification-service & ^
 docker build -t dummy-service:1.0.0-SNAPSHOT -f ./dummy-service/Dockerfile ./dummy-service & ^
 docker build -t eureka-server:1.0.0-SNAPSHOT -f ./eureka-server/Dockerfile ./eureka-server & ^
 docker build -t gateway:1.0.0-SNAPSHOT -f ./gateway/Dockerfile ./gateway

@@ -120,6 +120,22 @@ services:
     networks:
       - esprit-project-network
 
+  notification-service:
+    image: notification-service:1.0.0-SNAPSHOT
+    container_name: notification-service
+    hostname: notification-service
+    environment:
+      EUREKA_SERVER_URL: http://eureka-server:8761
+      USER_MANAGEMENT_URL: http://user-management-service:8089
+    ports:
+      - "8085:8085"
+    depends_on:
+      - eureka-server
+      - config-server
+      - user-management-service
+    networks:
+      - esprit-project-network
+
   order-processing-service:
     image: order-processing-service:1.0.0-SNAPSHOT
     container_name: order-processing-service
