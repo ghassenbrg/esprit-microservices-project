@@ -1,10 +1,15 @@
 package com.esprit.tn.inventory.impl;
 
 import java.util.List;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.esprit.tn.inventory.models.Inventory;
 import com.esprit.tn.inventory.repository.InventoryRepository;
 import com.esprit.tn.inventory.service.InventoryService;
+import org.springframework.stereotype.Service;
+
+
+@Service
 
 public class InventoryServiceImpl implements InventoryService {
 
