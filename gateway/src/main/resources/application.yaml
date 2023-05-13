@@ -39,6 +39,10 @@ spring:
         uri: lb://ORDER-PROCESSING-SERVICE
         predicates:
         - Path=/orders/**, /items/**
+      - id: inventory
+        uri: lb://INVENTORY-SERVICE
+        predicates:
+        - Path=/inventory/**
 server:
   port: 9191
 eureka:
