@@ -93,7 +93,7 @@ export class ProductService {
 
 
   async delete(productId: string): Promise<Product> {
-    this.ratingService.deleteByProduct(productId);
+    await this.ratingService.deleteByProduct(productId);
     return this.productModel.findOneAndDelete({ productId }).exec();
   }
 
@@ -109,7 +109,7 @@ export class ProductService {
     return this.productModel.deleteMany({}).exec();
   }
 
-  async findBySeller(sellerId: string): Promise<Product[]> {
+  async findBySeller(sellerId: number): Promise<Product[]> {
     const products = await this.productModel.find({ sellerId }).exec();
     return Promise.all(products.map(product => this.fillTransientFields(product?.toObject())));
   }
@@ -229,13 +229,14 @@ export class ProductService {
     }
   }
 
-  async deleteBySeller(sellerId: string): Promise<boolean> {
+  async deleteBySeller(sellerId: number): Promise<{ deletedCount: number }> {
     try {
       const products = await this.findBySeller(sellerId);
       for (const product of products) {
-        this.delete(product.productId);
+        await this.ratingService.deleteByProduct(product.productId);
       }
-      return true;
+      const result = await this.productModel.deleteMany({ sellerId: sellerId }).exec();
+      return { deletedCount: result.deletedCount };
     } catch (error) {
       throw new BadRequestException(`Failed to delete products by sellerId: ${error.message}`);
     }
