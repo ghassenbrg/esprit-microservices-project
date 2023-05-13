@@ -24,6 +24,8 @@ public class InventoryController {
 
 	@Autowired
 	private InventoryService inventoryService;
+	@Autowired
+	private QuantityClient quantityClient;
 
 	@GetMapping
 	public ResponseEntity<List<Inventory>> getAllInventories() {
