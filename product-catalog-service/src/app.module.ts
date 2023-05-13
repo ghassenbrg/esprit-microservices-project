@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EurekaModule } from 'nestjs-eureka';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { JwtAuthModule } from './jwt-auth-module/jwt-auth-module.module';
+import { MorganMiddleware } from './middleware/morgan.middleware';
 import { ProductModule } from './product/product.module';
 import { RatingModule } from './rating/rating.module';
 
@@ -32,4 +33,8 @@ import { RatingModule } from './rating/rating.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(MorganMiddleware).forRoutes('*');
+  }
+}
