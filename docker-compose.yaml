@@ -143,7 +143,7 @@ services:
     hostname: order-processing-service
     environment:
       EUREKA_SERVER_URL: http://eureka-server:8761
-      USER_MANAGEMENT_SERVICE_URL: http://user-management-service:8089
+      USER_MANAGEMENT_URL: http://user-management-service:8089
       PRODUCT_CATALOG_SERVICE_URL: http://product-catalog-service:3000
       PAYMENT_SERVICE_URL: http://payment-service:8084
     ports:
