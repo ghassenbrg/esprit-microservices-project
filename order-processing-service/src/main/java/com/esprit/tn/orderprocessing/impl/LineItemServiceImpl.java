@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.esprit.tn.orderprocessing.communication.CatalogClient;
 import com.esprit.tn.orderprocessing.models.LineItem;
 import com.esprit.tn.orderprocessing.models.Order;
 import com.esprit.tn.orderprocessing.repositories.LineItemRepository;
@@ -25,6 +26,9 @@ public class LineItemServiceImpl implements LineItemService {
 
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private CatalogClient catalogClient;
 
 	public List<LineItem> getAllItems() {
 		return lineItemRepository.findAll();
@@ -63,7 +67,7 @@ public class LineItemServiceImpl implements LineItemService {
 	}
 
 	private boolean productExist(String productId) {
-		// TODO;
+		//return catalogClient.getProductById(productId);
 		return true;
 	}
 }
