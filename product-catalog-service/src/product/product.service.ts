@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { firstValueFrom } from 'rxjs';
@@ -54,7 +54,10 @@ export class ProductService {
 
   async findOne(productId: string): Promise<Product> {
     const product = await this.productModel.findOne({ productId }).exec();
-    return this.fillTransientFields(product?.toObject());
+    if (!product) {
+      throw new NotFoundException('Product not found');
+    }
+    return this.fillTransientFields(product.toObject());
   }
 
   async update(productId: string, updateProductDto: UpdateProductDto): Promise<Product> {
@@ -128,7 +131,7 @@ export class ProductService {
     const products = await this.productModel.find().exec();
     const productsWithRatings = await Promise.all(products.map(async (product) => {
       const avgRating = await this.ratingService.getAverageRating(product.productId);
-      const productObj = product;
+      const productObj = this.fillTransientFields(product?.toObject());
       return {
         ...productObj,
         avgRating

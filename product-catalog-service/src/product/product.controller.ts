@@ -28,6 +28,20 @@ export class ProductController {
     return this.productService.findAll();
   }
 
+  @Get('top-rated')
+  @ApiOperation({ summary: 'Retrieve top rated products' })
+  @ApiResponse({ status: 200, description: 'List of top rated products', type: [Product] })
+  async getTopRated(): Promise<Product[]> {
+    return this.productService.getTopRated();
+  }
+
+  @Get('low-stock')
+  @ApiOperation({ summary: 'Retrieve products with low stock' })
+  @ApiResponse({ status: 200, description: 'List of products with low stock', type: [Product] })
+  async getLowStock(): Promise<Product[]> {
+    return this.productService.getLowStock();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve a product by ID' })
   @ApiParam({ name: 'id', required: true, description: 'ID of the product' })
@@ -96,20 +110,6 @@ export class ProductController {
   @ApiResponse({ status: 200, description: 'List of products in the category', type: [Product] })
   async findByCategory(@Param('category') category: string): Promise<Product[]> {
     return this.productService.findByCategory(category);
-  }
-
-  @Get('top-rated')
-  @ApiOperation({ summary: 'Retrieve top rated products' })
-  @ApiResponse({ status: 200, description: 'List of top rated products', type: [Product] })
-  async getTopRated(): Promise<Product[]> {
-    return this.productService.getTopRated();
-  }
-
-  @Get('low-stock')
-  @ApiOperation({ summary: 'Retrieve products with low stock' })
-  @ApiResponse({ status: 200, description: 'List of products with low stock', type: [Product] })
-  async getLowStock(): Promise<Product[]> {
-    return this.productService.getLowStock();
   }
 
   @Post('loadDummyProducts')

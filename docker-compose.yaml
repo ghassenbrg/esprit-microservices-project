@@ -30,11 +30,10 @@ services:
     ports:
       - "8089:8089"
     depends_on:
-      - config-server 
-      - eureka-server    
+      - config-server
+      - eureka-server
     networks:
       - esprit-project-network
-
 
   inventory-service:
     image: inventory-service:1.0.0-SNAPSHOT
@@ -50,7 +49,7 @@ services:
     depends_on:
       - eureka-server
       - config-server
-      - user-management-service  
+      - user-management-service
     networks:
       - esprit-project-network
 
@@ -87,7 +86,7 @@ services:
       JWT_AUDIENCE: microservices-client
       JWT_ISSUER: http://localhost:8089
       USER_MANAGEMENT_SERVICE_URL: http://user-management-service:8089
-      INVENTORY_SERVICE_URL: http://inventory-service:9786
+      INVENTORY_SERVICE_URL: http://inventory-service:9595
     depends_on:
       - eureka-server
       - user-management-service
@@ -151,7 +150,7 @@ services:
     depends_on:
       - eureka-server
       - config-server
-      - user-management-service  
+      - user-management-service
     networks:
       - esprit-project-network
 
