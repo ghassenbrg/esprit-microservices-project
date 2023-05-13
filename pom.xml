@@ -17,6 +17,7 @@
         <module>eureka-server</module>
         <module>gateway</module>
         <module>inventory-service</module>
+        <module>notification-service</module>
     </modules>
 
 </project>
