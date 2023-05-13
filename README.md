@@ -31,6 +31,26 @@ curl --location --request GET 'http://localhost:9191/api/users/sellers' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer xxxx...'
 
+POST Dummy products
+curl --location --request POST 'http://localhost:9191/product-catalog/api/products/loadDummyProducts' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer xxxx...'
+
+Check products for user with id 4
+curl --location --request GET 'http://localhost:9191/product-catalog/api/products/seller/4' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer xxxx...'
+
+Delete user (seller) ==> it will delete it's products after communicating with product-catalog-service
+curl --location --request DELETE 'http://localhost:9191/api/users/4' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer xxxx...'
+
+Check again products for user with id 4 ==> empty array
+curl --location --request GET 'http://localhost:9191/product-catalog/api/products/seller/4' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer xxxx...'
+
 curl --location --request GET 'http://localhost:9191/api/inventory' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer xxxx...'
