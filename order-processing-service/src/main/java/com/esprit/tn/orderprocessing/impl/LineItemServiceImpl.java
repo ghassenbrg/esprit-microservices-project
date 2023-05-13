@@ -67,7 +67,9 @@ public class LineItemServiceImpl implements LineItemService {
 	}
 
 	private boolean productExist(String productId) {
-		//return catalogClient.getProductById(productId);
-		return true;
+		if (catalogClient.getProductById(productId) != null) {
+			return true;
+		}
+		return false;
 	}
 }
