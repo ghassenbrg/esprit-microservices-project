@@ -1,6 +1,6 @@
 # build jars and docker images
 run build.bat
-# start docker containers ordered
+# start docker containers
 run docker-compose up -d
 # create test buyer user on user-management-service
 send post request on http://localhost:9191/api/users/register with body
@@ -22,7 +22,34 @@ send post request on http://localhost:9191/api/users/register with body
 ![image](https://github.com/mazenaissa/esprit-microservices-project/assets/25006500/af9dfde9-5fa5-4bb1-8124-92f7a21ea5b0)
 ![image](https://github.com/mazenaissa/esprit-microservices-project/assets/25006500/c50f33cf-5278-481c-bc3b-52fa8ff66272)
 
-# invoke endpoints from gateway using the retrived token
+# invoke endpoints from gateway using the retrieved token
 curl --location --request GET 'http://localhost:9191/api/users' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer xxxx...'
+
+curl --location --request GET 'http://localhost:9191/api/users/sellers' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer xxxx...'
+
+curl --location --request GET 'http://localhost:9191/api/inventory' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer xxxx...'
+
+curl --location --request GET 'http://localhost:9191/product-catalog/api/products/P123456' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer xxxx...'
+
+POST 'http://localhost:9191/product-catalog/api/products/P123456' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer xxxx...'
+body
+{
+    "orderId" : 1,
+    "email": "dhiua99@gmail.com",
+	"userId" : 1,
+    "amount" : 100,
+	"cardHolderName" : "Mohamed Dhia Hachem",
+	"cardNo" : "0956643654325",
+	"cvv" : "879",
+	"expDate" : "12/12"
+}

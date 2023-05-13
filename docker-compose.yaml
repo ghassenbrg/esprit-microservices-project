@@ -41,9 +41,10 @@ services:
     hostname: inventory-service
     environment:
       EUREKA_SERVER_URL: http://eureka-server:8761
-      USER_MANAGEMENT_SERVICE_URL: http://user-management-service:8089
+      USER_MANAGEMENT_URL: http://user-management-service:8089
       PRODUCT_CATALOG_SERVICE_URL: http://product-catalog-service:3000
       PAYMENT_SERVICE_URL: http://payment-service:8084
+      PRODUCTS_SERVICE_URL: http://product-catalog:8999/product-catalog/api
     ports:
       - "9595:9595"
     depends_on:

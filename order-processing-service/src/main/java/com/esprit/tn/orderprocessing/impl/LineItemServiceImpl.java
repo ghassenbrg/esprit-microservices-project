@@ -3,11 +3,15 @@ package com.esprit.tn.orderprocessing.impl;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.esprit.tn.orderprocessing.communication.CatalogClient;
+import com.esprit.tn.orderprocessing.exceptions.BadRequestException;
 import com.esprit.tn.orderprocessing.models.LineItem;
 import com.esprit.tn.orderprocessing.models.Order;
+import com.esprit.tn.orderprocessing.payload.ApiResponse;
 import com.esprit.tn.orderprocessing.repositories.LineItemRepository;
 import com.esprit.tn.orderprocessing.services.LineItemService;
 import com.esprit.tn.orderprocessing.services.OrderService;
@@ -52,6 +56,10 @@ public class LineItemServiceImpl implements LineItemService {
 		// connect with catalog service to check if product exists
 		if (lineItem != null && order != null && productExist(lineItem.getProductId())) {
 			lineItem.setOrderId(orderId);
+		}
+		else {
+			ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "Product does not exist");
+			throw new BadRequestException(apiResponse);
 		}
 		lineItemRepository.save(lineItem);
 	}
