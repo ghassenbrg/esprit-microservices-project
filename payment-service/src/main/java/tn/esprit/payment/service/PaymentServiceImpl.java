@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.payment.exception.ResourceNotFoundException;
 import tn.esprit.payment.model.Payment;
 import tn.esprit.payment.payload.ApiResponse;
+import tn.esprit.payment.payload.MailRequest;
 import tn.esprit.payment.payload.PagedResponse;
 import tn.esprit.payment.repository.PaymentRepository;
 import tn.esprit.payment.utils.AppUtils;
@@ -27,6 +28,9 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
+
+	@Autowired
+	private NotificationServiceClient notificationServiceClient;
 
 	@Override
 	public PagedResponse<Payment> getAllPayments(int page, int size) {
@@ -64,7 +68,10 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public ApiResponse createPayment(Payment payment) {
 
-		paymentRepository.save(payment);
+		Payment savedPayment = paymentRepository.save(payment);
+		MailRequest mailRequest = new MailRequest(savedPayment.getUserId(), savedPayment.getEmail(),
+				"Transaction Completed Successfully", "Transaction Completed Successfully");
+		notificationServiceClient.sendNotification(mailRequest);
 
 		return new ApiResponse(Boolean.TRUE, "Transaction Completed Successfully");
 	}

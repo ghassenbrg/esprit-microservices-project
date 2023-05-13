@@ -117,6 +117,7 @@ services:
       - eureka-server
       - config-server
       - user-management-service
+      - notification-service
     networks:
       - esprit-project-network
 

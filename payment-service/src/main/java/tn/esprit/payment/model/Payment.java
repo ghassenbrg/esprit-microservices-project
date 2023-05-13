@@ -31,6 +31,7 @@ public class Payment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long orderId;
+	private String email;
 	private Long userId;
 	private BigDecimal amount;
 	private String cardHolderName;
