@@ -30,7 +30,6 @@ public class Notification {
 	private String content;
 
 	@Column(name = "type")
-	@NotBlank
 	@Enumerated(EnumType.STRING)
 	private NotificationType type;
 

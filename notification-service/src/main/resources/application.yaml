@@ -26,8 +26,8 @@ spring:
           connectiontimeout: '5000'
           writetimeout: '5000'
     host: smtp.gmail.com
-    username: mohamedelfadhel.naouar@esprit.tn
-    password: 
+    username: mohameddhia.hachem@esprit.tn
+    password: 'Pintra    123698745'
     port: '587'
 
 mail:

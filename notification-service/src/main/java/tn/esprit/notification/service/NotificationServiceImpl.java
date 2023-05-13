@@ -45,6 +45,7 @@ public class NotificationServiceImpl implements NotificationService {
 		notification.setContent(mailRequest.getContent());
 		notification.setType(NotificationType.CONFIRM_PAYMENT);
 		notification.setUserId(mailRequest.getUserId());
+		notification.setContent(mailRequest.getContent());
 		ApiResponse apiResponse = mailService.sendMail(mailRequest);
 		notificationRepository.save(notification);
 		return apiResponse;

@@ -14,7 +14,7 @@ send post request on http://localhost:9191/api/users/register with body
 	"username":"test",
 	"address" :"testaddress, monastir,tunisia"
 }
-![image](https://github.com/mazenaissa/esprit-microservices-project/assets/25006500/af0ac729-3329-4ab5-8df1-30f9ac1b1c5c)
+![image](https://github.com/mazenaissa/esprit-microservices-project/assets/25006500/2c4b595d-b543-4017-b409-fb1dfabae03b)
 
 # retrieve token for user test
 ![image](https://github.com/mazenaissa/esprit-microservices-project/assets/25006500/4a9d7503-e4c8-4d95-bae2-43451333a013)
